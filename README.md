@@ -125,21 +125,16 @@ Now I'm making a deliberate move into **UX Design** and **Project Management**. 
 
 ## GitHub Stats
 
-<!--
-  ⚠️  Replace YOUR_GITHUB_USERNAME with your actual GitHub username.
-  It appears 3 times below — replace all three before uploading.
--->
-
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=YOUR_GITHUB_USERNAME&show_icons=true&theme=tokyonight&hide_border=true&count_private=true&bg_color=0d0d1a&title_color=7c6fff&icon_color=38d9d9&text_color=c8c8e8" width="420" />
+  <img src="https://github-readme-stats.vercel.app/api?username=chintoupatel&show_icons=true&theme=tokyonight&hide_border=true&count_private=true&bg_color=0d0d1a&title_color=7c6fff&icon_color=38d9d9&text_color=c8c8e8" width="420" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_GITHUB_USERNAME&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d0d1a&title_color=7c6fff&text_color=c8c8e8" width="420" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=chintoupatel&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d0d1a&title_color=7c6fff&text_color=c8c8e8" width="420" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-streak-stats.demolab.com/?user=YOUR_GITHUB_USERNAME&theme=tokyonight&hide_border=true&background=0d0d1a&ring=7c6fff&fire=38d9d9&currStreakLabel=c8c8e8&sideLabels=c8c8e8" width="420" />
+  <img src="https://github-readme-streak-stats.demolab.com/?user=chintoupatel&theme=tokyonight&hide_border=true&background=0d0d1a&ring=7c6fff&fire=38d9d9&currStreakLabel=c8c8e8&sideLabels=c8c8e8" width="420" />
 </p>
 
 <br/>
@@ -165,7 +160,7 @@ Now I'm making a deliberate move into **UX Design** and **Project Management**. 
 <br/>
 
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=YOUR_GITHUB_USERNAME&style=flat-square&color=7c6fff&label=Profile+Views" />
+  <img src="https://komarev.com/ghpvc/?username=chintoupatel&style=flat-square&color=7c6fff&label=Profile+Views" />
 </p>
 
 <br/>
