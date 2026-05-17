@@ -33,15 +33,14 @@
 
 I spent five years leading teams, redesigning broken workflows, and coordinating cross-functional operations under real pressure. That experience gave me something most design candidates don't have at the start — a grounded understanding of how systems fail, how people actually behave, and where communication breaks down.
 
-Now I'm making a deliberate move into **UX Design** and **Project Management**. The foundation is already in place.
+Now I'm making a deliberate move into **UX Design**. The foundation is already in place.
 
 > *I'm not starting from scratch. I'm redirecting five years of operational instinct into building products people actually want to use.*
 
 <br/>
 
 - 🎓 &nbsp; Diploma in Web Design and Programming — CDI College, Montreal
-- 📚 &nbsp; Google UX Design Certificate *(finishing soon)*
-- 📚 &nbsp; Google Project Management Certificate *(finishing soon)*
+- 📚 &nbsp; Google UX Design Certificate 
 - 🌍 &nbsp; English · Hindi · Gujarati *(Fluent)* &nbsp;·&nbsp; French *(Intermediate)*
 - ⚡ &nbsp; I'm 24 — but I rarely look it or act it. People tend to underestimate me exactly once.
 
@@ -56,7 +55,6 @@ Now I'm making a deliberate move into **UX Design** and **Project Management**. 
 | Area | Focus |
 |:---|:---|
 | UX Design | Google UX Design Certificate + Figma wireframes and prototypes |
-| Project Management | Google PM Certificate + Jira and Agile workflows |
 | AI Workflow | Prompt Engineering · Claude · Generative AI tools |
 
 <br/>
@@ -99,7 +97,6 @@ Now I'm making a deliberate move into **UX Design** and **Project Management**. 
 | Certificate | Issuer | Date | Status |
 |:---|:---|:---|:---:|
 | Google UX Design Certificate | Google | — | 🔄 |
-| Google Project Management Certificate | Google | — | 🔄 |
 | AI Fluency: Framework and Foundations | Anthropic | Mar 2026 | ✅ |
 | Introduction to Agent Skills | Anthropic | Mar 2026 | ✅ |
 | Generative AI: Prompt Engineering Basics | IBM | Feb 2026 | ✅ |
