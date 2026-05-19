@@ -40,18 +40,18 @@ I'm not starting over. I'm redirecting.
 - Bootstrap — layout and responsiveness
 
 **Workflow**
-- Google Workspace, Slack, Jira — staying organised and keeping teams aligned
+- Google Workspace, Slack, Notion — staying organised and keeping teams aligned
 
 ---
 
 ## Certifications
 
-| Certificate | Issuer | Date | Status |
-|:---|:---|:---|:---:|
-| Google UX Design Certificate | Google | In progress | 🔄 |
-| AI Fluency: Framework and Foundations | Anthropic | Mar 2026 | ✅ |
-| Introduction to Agent Skills | Anthropic | Mar 2026 | ✅ |
-| Generative AI: Prompt Engineering Basics | IBM | Feb 2026 | ✅ |
+| Certificate | Issuer | Status |
+|:---|:---|:---|
+| Google UX Design Certificate | Google | ✅ |
+| AI Fluency: Framework and Foundations | Anthropic | ✅ |
+| Introduction to Agent Skills | Anthropic | ✅ |
+| Generative AI: Prompt Engineering Basics | IBM | ✅ |
 
 ---
 
@@ -68,8 +68,6 @@ I'm not starting over. I'm redirecting.
 
 - 🎓 Diploma in Web Design and Programming — CDI College, Montreal
 - 🌍 English · Hindi · Gujarati *(fluent)* · French *(intermediate)*
-- 📍 Based in Canada
-- ⚡ 24 years old — people underestimate me exactly once
 
 ---
 
