@@ -47,13 +47,13 @@ export function Header() {
         style={{
           display: 'flex',
           gap: DESIGN_TOKENS.spacing.mediumGap,
-          flexWrap: 'wrap',
+          flexWrap: 'nowrap',
+          flexShrink: 0,
           justifyContent: 'flex-end',
         }}
       >
         <a
           href="#connect"
-          data-reveal-up
           style={{
             border: `1px solid ${DESIGN_TOKENS.colors.text}`,
             padding: '13px 25px',
@@ -64,10 +64,11 @@ export function Header() {
             textTransform: 'uppercase',
             color: DESIGN_TOKENS.colors.text,
             textDecoration: 'none',
+            whiteSpace: 'nowrap',
+            flexShrink: 0,
             transition: `background ${DESIGN_TOKENS.motion.fast} ${DESIGN_TOKENS.motion.easeStandard}, color ${DESIGN_TOKENS.motion.fast} ${DESIGN_TOKENS.motion.easeStandard}`,
             cursor: 'pointer',
             backgroundColor: 'transparent',
-            animationDelay: '0.14s',
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.backgroundColor = DESIGN_TOKENS.colors.text
@@ -84,7 +85,6 @@ export function Header() {
           href="/resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          data-reveal-up
           style={{
             border: `1px solid ${DESIGN_TOKENS.colors.text}`,
             padding: '13px 25px',
@@ -95,10 +95,11 @@ export function Header() {
             textTransform: 'uppercase',
             color: DESIGN_TOKENS.colors.text,
             textDecoration: 'none',
+            whiteSpace: 'nowrap',
+            flexShrink: 0,
             transition: `background ${DESIGN_TOKENS.motion.fast} ${DESIGN_TOKENS.motion.easeStandard}, color ${DESIGN_TOKENS.motion.fast} ${DESIGN_TOKENS.motion.easeStandard}`,
             cursor: 'pointer',
             backgroundColor: 'transparent',
-            animationDelay: '0.22s',
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.backgroundColor = DESIGN_TOKENS.colors.text

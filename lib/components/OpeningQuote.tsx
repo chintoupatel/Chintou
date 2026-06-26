@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger)
 const { typography, colors, fonts } = DESIGN_TOKENS
 
 const OPENING_QUOTE =
-  "My work really is a big part of who I am. As a designer, I'm always out in the world, soaking in everything around me. I love noticing how people connect with each other and with technology. For me, every project is more than just a job, it's a story I get to bring to life through design."
+  "My work really is a big part of who I am. As a designer, I'm always out in the world, soaking in everything around me. For me, every project is more than just a job, it's a story I get to bring to life through design."
 
 export function OpeningQuote() {
   const quoteRef = useRef<HTMLParagraphElement>(null)
