@@ -50,3 +50,4 @@ next-env.d.ts
 # macOS Finder duplicate artifacts (e.g. "page 2.tsx", "cover 2.png")
 * [0-9].*
 *[0-9] [0-9].*
+AGENTS.md
