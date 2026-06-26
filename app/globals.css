@@ -1,0 +1,263 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design System: Chintou */
+:root {
+  --color-bg: #F7F7F7;
+  --color-text-primary: #101010;
+  --color-text-secondary: #606060;
+  --color-text-muted: #AAAAAA;
+  --color-border: #EFEFEF;
+  --color-surface-secondary: #F1F1F1;
+
+  --font-display: var(--font-playfair), Georgia, serif;
+  --font-body: var(--font-sofia), system-ui, -apple-system, sans-serif;
+  --font-logo: var(--font-pacifico), cursive;
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+  --space-3xl: 48px;
+  --space-4xl: 64px;
+  --space-5xl: 96px;
+
+  --container-width: 1440px;
+  --container-margin: 64px;
+  --grid-gutter: 24px;
+
+  --motion-fast: 120ms;
+  --motion-base: 200ms;
+  --motion-slow: 320ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Guard against horizontal scroll at all widths. ActualStory's scattered
+     desktop offsets can spill a few hundred px past the viewport right edge;
+     clip it so no stray h-scrollbar appears (body already clips ≤1024px). */
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background-color: var(--color-text-primary);
+  color: var(--color-bg);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  line-height: 1;
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1px;
+}
+
+h2 {
+  font-size: 40px;
+  letter-spacing: 0;
+}
+
+h3 {
+  font-size: 28px;
+  letter-spacing: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: all var(--motion-base) var(--ease-standard);
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--container-margin);
+}
+
+/* Grid */
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--grid-gutter);
+}
+
+/* Focus visible */
+*:focus-visible {
+  outline: 2px solid var(--color-text-primary);
+  outline-offset: 2px;
+}
+
+a:focus-visible {
+  outline: 3px solid var(--color-text-primary);
+  outline-offset: 4px;
+}
+
+button:focus-visible {
+  outline: 3px solid var(--color-text-primary);
+  outline-offset: 4px;
+}
+
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Button base */
+.btn {
+  display: inline-block;
+  padding: 13px 25px;
+  border: 1px solid var(--color-text-primary);
+  background: transparent;
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--motion-fast) var(--ease-standard),
+              color var(--motion-fast) var(--ease-standard);
+}
+
+.btn:hover {
+  background: var(--color-text-primary);
+  color: var(--color-bg);
+}
+
+/* Label */
+.label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* In-progress pill — pulsing status dot */
+@keyframes pill-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.6); }
+}
+
+.pill-dot {
+  animation: pill-pulse 1.6s var(--ease-standard) infinite;
+}
+
+/* Loading screen — gently floating coffee cup */
+@keyframes loader-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.loader-cup {
+  animation: loader-float 2s ease-in-out infinite;
+}
+
+/* Above-fold entrance reveals — fire once the loader adds html.loaded */
+[data-reveal-up] {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+html.loaded [data-reveal-up] {
+  animation: reveal-up 0.7s var(--ease-standard) forwards;
+}
+
+@keyframes reveal-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Lenis smooth-scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Respect users who prefer reduced motion — kill animations + transitions */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Tablet + mobile base (≤1024px) ──
+   Stacked layout kicks in at 1024px (see component breakpoints), so the
+   horizontal-overflow guard must cover the whole stacked range. */
+@media (max-width: 1024px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+}
+
+/* ── Mobile container margins (≤768px) ── */
+@media (max-width: 768px) {
+  :root {
+    --container-margin: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --container-margin: 16px;
+  }
+}
