@@ -72,6 +72,11 @@ export default function RootLayout({
       lang="en"
       className={`${sofiaSans.variable} ${playfair.variable} ${pacifico.variable} ${splineSansMono.variable} h-full antialiased`}
     >
+      <head>
+        {/* Preload the hero portrait (LCP candidate, served via CSS bg so it
+            isn't auto-discovered early) to cut Largest Contentful Paint. */}
+        <link rel="preload" as="image" href="/images/IMG_0115.jpeg" />
+      </head>
       <body className="min-h-full flex flex-col">
         <SmoothScroll>{children}</SmoothScroll>
         <SpeedInsights />

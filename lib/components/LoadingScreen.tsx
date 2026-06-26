@@ -6,9 +6,9 @@ import { useTypewriterScrub } from '../hooks/useTypewriterScrub'
 
 const { colors, fonts, motion } = DESIGN_TOKENS
 
-const COUNT_MS = 2600 // number climbs 0→100
-const TYPE_MS = 1700 // text types out (finishes early so it's readable)
-const HOLD_MS = 1100 // pause at 100% so the line can be read
+const COUNT_MS = 1400 // number climbs 0→100 (shortened for faster LCP)
+const TYPE_MS = 1100 // text types out (finishes early so it's readable)
+const HOLD_MS = 500 // pause at 100% so the line can be read
 const FADE_MS = 400 // fade-out
 
 const TYPE_TEXT = 'PS: I can make a latte Art.'
