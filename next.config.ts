@@ -55,15 +55,10 @@ const nextConfig: NextConfig = {
   // Compress responses
   compress: true,
 
-  // Dev (webpack) uses in-memory cache instead of the on-disk pack cache.
-  // The project path contains a space, which breaks webpack's temp-pack
-  // rename ('0.pack.gz_' -> '0.pack.gz' ENOENT). Memory cache avoids it.
-  webpack: (config, { dev }: { dev: boolean }) => {
-    if (dev) {
-      config.cache = { type: "memory" };
-    }
-    return config;
-  },
+  // Next 16 defaults to Turbopack (Vercel uses it for `next build`). An empty
+  // config opts in cleanly. Turbopack has no on-disk pack-cache, so the old
+  // space-in-path webpack cache workaround is no longer needed.
+  turbopack: {},
 };
 
 export default nextConfig;
