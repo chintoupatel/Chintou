@@ -233,7 +233,7 @@ export function InfiniteGallery({
               pointerEvents: 'none',
             }}
           >
-            <h2
+            <h3
               ref={(el) => {
                 headingRefs.current[i] = el
               }}
@@ -250,7 +250,7 @@ export function InfiniteGallery({
               }}
             >
               {title}
-            </h2>
+            </h3>
           </div>
         ))}
       </div>

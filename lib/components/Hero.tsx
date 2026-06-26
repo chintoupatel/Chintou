@@ -100,7 +100,7 @@ export function Hero() {
           zIndex: 2,
           fontFamily: typography.heroTitle.fontFamily,
           fontWeight: typography.heroTitle.fontWeight,
-          fontSize: 'clamp(72px, 22vw, 300px)',
+          fontSize: isMobile ? 'clamp(44px, 13vw, 90px)' : 'clamp(72px, 22vw, 300px)',
           lineHeight: typography.heroTitle.lineHeight,
           letterSpacing: typography.heroTitle.letterSpacing,
           margin: isMobile ? '8px 0 0' : '-28px 0 0',

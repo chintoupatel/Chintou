@@ -17,9 +17,9 @@ const navLinks = [
 ]
 
 const socialLinks = [
-  { label: 'INSTAGRAM', href: 'https://www.instagram.com/chintou.mov/', external: false },
-  { label: 'LINKEDIN', href: 'https://www.linkedin.com/in/chintou/', external: true },
-  { label: 'GITHUB', href: 'https://github.com/chintoupatel', external: true },
+  { label: 'INSTAGRAM', href: 'https://www.instagram.com/chintou.mov/', external: false, aria: 'Chintan on Instagram' },
+  { label: 'LINKEDIN', href: 'https://www.linkedin.com/in/chintou/', external: true, aria: 'Chintan on LinkedIn' },
+  { label: 'GITHUB', href: 'https://github.com/chintoupatel', external: true, aria: 'Chintan on GitHub' },
 ]
 
 const labelStyle = {
@@ -37,18 +37,21 @@ function FooterLink({
   style,
   target,
   rel,
+  ariaLabel,
 }: {
   href: string
   children: React.ReactNode
   style?: React.CSSProperties
   target?: string
   rel?: string
+  ariaLabel?: string
 }) {
   return (
     <a
       href={href}
       target={target}
       rel={rel}
+      aria-label={ariaLabel}
       style={{
         // inline-flex + minHeight gives a 44px touch target (was inline-block,
         // ~35px tall — under the mobile tap-target guideline).
@@ -142,7 +145,7 @@ export function Connect() {
 
   return (
     <>
-      <section
+      <footer
         id="connect"
         style={{
           maxWidth: dimensions.container,
@@ -248,6 +251,7 @@ export function Connect() {
                     style={navLinkStyle}
                     target={link.external ? '_blank' : undefined}
                     rel={link.external ? 'noopener noreferrer' : undefined}
+                    ariaLabel={link.aria}
                   >
                     {link.label}
                   </FooterLink>
@@ -294,7 +298,7 @@ export function Connect() {
             Back to top ↑
           </a>
         </div>
-      </section>
+      </footer>
 
       {/* Giant footer wordmark — playfair, matches hero CHINTAN.
           Per-letter wave + fadeInDown on scroll, same as "About Me". */}

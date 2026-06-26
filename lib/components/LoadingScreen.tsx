@@ -75,6 +75,12 @@ export function LoadingScreen() {
     }
   }, [gone])
 
+  // Skip: bypass the intro immediately (reveals the page, fires entrance anims).
+  const skip = () => {
+    document.documentElement.classList.add('loaded')
+    setGone(true)
+  }
+
   if (gone) return null
 
   return (
@@ -94,6 +100,27 @@ export function LoadingScreen() {
         transition: `opacity ${FADE_MS}ms ${motion.easeStandard}`,
       }}
     >
+      <button
+        onClick={skip}
+        aria-label="Skip intro"
+        style={{
+          position: 'absolute',
+          bottom: '32px',
+          right: '32px',
+          background: 'transparent',
+          border: `1px solid ${colors.text}`,
+          color: colors.text,
+          fontFamily: fonts.label,
+          fontSize: '12px',
+          letterSpacing: '1.5px',
+          textTransform: 'uppercase',
+          padding: '10px 18px',
+          cursor: 'pointer',
+          borderRadius: '2px',
+        }}
+      >
+        Skip →
+      </button>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/coffee-cup.svg"
