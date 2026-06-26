@@ -41,9 +41,11 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* Guard against horizontal scroll at all widths. ActualStory's scattered
-     desktop offsets can spill a few hundred px past the viewport right edge;
-     clip it so no stray h-scrollbar appears (body already clips ≤1024px). */
-  overflow-x: hidden;
+     desktop offsets can spill a few hundred px past the viewport right edge.
+     Use `clip` NOT `hidden`: `hidden` turns <html> into a scroll container,
+     which breaks Lenis + ScrollTrigger scroll measurement and position:sticky
+     pinning on mobile Safari/Chrome. `clip` blocks h-scroll without that. */
+  overflow-x: clip;
 }
 
 body {
@@ -245,7 +247,9 @@ html.lenis body {
 @media (max-width: 1024px) {
   html,
   body {
-    overflow-x: hidden;
+    /* clip, not hidden — see the html rule above; hidden breaks Lenis +
+       ScrollTrigger on mobile by making these elements scroll containers. */
+    overflow-x: clip;
   }
 }
 

@@ -17,10 +17,11 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reduced) return
 
-    // smoothWheel handles desktop; syncTouch routes touch scrolling through
-    // Lenis too — without it, mobile touch bypasses Lenis, ScrollTrigger never
-    // gets a scroll event, and NO animations fire on mobile.
-    const lenis = new Lenis({ duration: 1.2, smoothWheel: true, syncTouch: true })
+    // smoothWheel handles desktop. syncTouch is intentionally OFF: on iOS
+    // Safari it fights native momentum scroll and can stall scroll-driven
+    // updates entirely. Touch uses native scroll, and the window 'scroll'
+    // listener below feeds ScrollTrigger so reveals/parallax still fire.
+    const lenis = new Lenis({ duration: 1.2, smoothWheel: true })
     lenis.on('scroll', ScrollTrigger.update)
 
     const onTick = (time: number) => lenis.raf(time * 1000)
