@@ -22,7 +22,7 @@ I spent five years in operations — fixing broken processes and coordinating te
 
 > *Good design makes complex things feel simple. That's what I build.*
 
-**Live:** _deploying on Vercel_ · **Design:** Figma → code
+**Live:** [chintou.vercel.app](https://chintou.vercel.app) · **Design:** Figma → code
 
 ---
 

@@ -25,7 +25,7 @@ const projects = [
   {
     title: 'Shree Hanuman Power Tools',
     description:
-      'Created a cohesive design system and brand identity for a growing fintech startup. Emphasized consistency, accessibility, and scalability across all touchpoints.',
+      'UX research and a documented design system for a power tools dealer with no digital presence. Discovery reframed the brief from "build a store" to "reduce friction between intent and inquiry" — designing around how tradespeople actually buy.',
     tags: ['UX Research', 'Design Systems', 'Branding'],
     inProgress: false,
   },
