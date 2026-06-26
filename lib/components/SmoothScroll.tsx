@@ -17,15 +17,22 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reduced) return
 
-    // duration raised 1.1 → 1.7 for a slower, more deliberate cinematic glide.
-    const lenis = new Lenis({ duration: 1.7, smoothWheel: true })
+    // smoothWheel handles desktop; syncTouch routes touch scrolling through
+    // Lenis too — without it, mobile touch bypasses Lenis, ScrollTrigger never
+    // gets a scroll event, and NO animations fire on mobile.
+    const lenis = new Lenis({ duration: 1.2, smoothWheel: true, syncTouch: true })
     lenis.on('scroll', ScrollTrigger.update)
 
     const onTick = (time: number) => lenis.raf(time * 1000)
     gsap.ticker.add(onTick)
     gsap.ticker.lagSmoothing(0)
 
+    // Belt-and-suspenders: also update ScrollTrigger on native scroll, so
+    // reveals fire even where Lenis touch sync is unavailable.
+    window.addEventListener('scroll', ScrollTrigger.update, { passive: true })
+
     return () => {
+      window.removeEventListener('scroll', ScrollTrigger.update)
       gsap.ticker.remove(onTick)
       lenis.destroy()
     }

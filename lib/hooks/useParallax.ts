@@ -20,7 +20,7 @@ type ParallaxOptions = {
  */
 export function useParallax<T extends HTMLElement = HTMLDivElement>({
   distance = 60,
-  scrub = 2,
+  scrub = 1,
 }: ParallaxOptions = {}) {
   const ref = useRef<T>(null)
 

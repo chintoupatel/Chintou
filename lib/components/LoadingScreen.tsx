@@ -54,6 +54,19 @@ export function LoadingScreen() {
     return () => clearTimeout(t)
   }, [fading])
 
+  // Fail-safe: if the loader sequence ever stalls (backgrounded tab pausing
+  // rAF on mobile, etc.) the `loaded` class would never set and every
+  // [data-reveal-up] element — including the header buttons — would stay
+  // invisible + unclickable. Force it after a hard cap no matter what.
+  useEffect(() => {
+    const MAX_MS = COUNT_MS + HOLD_MS + FADE_MS + 1500
+    const t = setTimeout(() => {
+      document.documentElement.classList.add('loaded')
+      setGone(true)
+    }, MAX_MS)
+    return () => clearTimeout(t)
+  }, [])
+
   // Lock scroll while the overlay is mounted.
   useEffect(() => {
     document.body.style.overflow = gone ? '' : 'hidden'

@@ -54,7 +54,7 @@ export function Story() {
             trigger: actualStorySectionRef.current,
             start: 'top bottom',
             end: 'top top',
-            scrub: 2,
+            scrub: 1,
           },
         })
       }
@@ -83,7 +83,7 @@ export function Story() {
             trigger: hobbiesSectionRef.current,
             start: 'top bottom',
             end: 'top top',
-            scrub: 2,
+            scrub: 1,
           },
         })
       }
