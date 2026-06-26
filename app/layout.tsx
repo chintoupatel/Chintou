@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Sofia_Sans_Condensed, Playfair_Display, Pacifico, Spline_Sans_Mono } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { SmoothScroll } from "@/lib/components/SmoothScroll";
 
@@ -73,6 +74,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <SmoothScroll>{children}</SmoothScroll>
+        <SpeedInsights />
       </body>
     </html>
   );
