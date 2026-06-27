@@ -194,10 +194,13 @@ button:focus-visible {
   animation: loader-float 2s ease-in-out infinite;
 }
 
-/* Above-fold entrance reveals — fire once the loader adds html.loaded */
+/* Above-fold entrance reveals — fire once the loader adds html.loaded.
+   will-change promotes each to its own GPU layer so the translateY animation
+   is composited (off the main layout) and never counts toward CLS. */
 [data-reveal-up] {
   opacity: 0;
   transform: translateY(16px);
+  will-change: transform, opacity;
 }
 
 html.loaded [data-reveal-up] {

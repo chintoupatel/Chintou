@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef, useEffect } from 'react'
+import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { DESIGN_TOKENS } from '@/lib/config/designTokens'
@@ -187,11 +188,9 @@ export function Hero() {
           position: 'relative',
         }}
       >
-        {/* Hero portrait — keep as is */}
+        {/* Hero portrait — next/image (reserves space → no layout shift) */}
         <div
           ref={portraitRef}
-          role="img"
-          aria-label="Chintan Patel"
           style={{
             position: isMobile ? 'relative' : 'absolute',
             top: isMobile ? '0' : '-100px',
@@ -199,12 +198,21 @@ export function Hero() {
             width: isMobile ? '100%' : dimensions.portraitHero.width,
             height: isMobile ? '320px' : dimensions.portraitHero.height,
             borderRadius: dimensions.portraitHero.borderRadius,
+            overflow: 'hidden',
             opacity: 0.92,
-            background: `url('${images.heroPortrait}') center/cover no-repeat`,
             boxShadow: shadows.lg,
             zIndex: 1,
           }}
-        />
+        >
+          <Image
+            src={images.heroPortrait}
+            alt="Chintan Patel"
+            fill
+            priority
+            sizes={isMobile ? '100vw' : '530px'}
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+          />
+        </div>
       </div>
 
       {/* Scroll indicator — move with left/top
