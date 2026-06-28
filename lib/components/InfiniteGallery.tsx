@@ -144,8 +144,11 @@ export function InfiniteGallery({
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  // Scale down plane size on mobile to reduce blank space
-  const adjustedPlaneSize: [number, number] = isMobile ? [1.4, 1.8] : planeSize
+  // Bump plane size ~0.35 scene units (≈ +30-40px on screen) per request.
+  // Mobile stays a touch smaller to limit blank space.
+  const adjustedPlaneSize: [number, number] = isMobile
+    ? [planeSize[0] - 0.1, planeSize[1] - 0.2]
+    : [planeSize[0] + 0.35, planeSize[1] + 0.35]
 
   // Page-scroll drives progress 0..1 across the tall wrapper (sticky canvas).
   useEffect(() => {
@@ -214,7 +217,11 @@ export function InfiniteGallery({
         ref={pinRef}
         style={{ position: 'absolute', top: 0, left: 0, height: '100vh', width: '100%', overflow: 'hidden' }}
       >
-        <Canvas camera={{ position: [0, 0, 9], fov: 50 }}>
+        <Canvas
+          camera={{ position: [0, 0, 9], fov: 50 }}
+          dpr={[1, 1.5]}
+          gl={{ powerPreference: 'high-performance', antialias: false }}
+        >
           <ambientLight intensity={1} />
           <Suspense fallback={null}>
             <Scene images={images} progressRef={progressRef} zSpacing={zSpacing} planeSize={adjustedPlaneSize} />

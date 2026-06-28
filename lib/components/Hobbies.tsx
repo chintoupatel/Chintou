@@ -19,9 +19,9 @@ const hobbyImages = [
   { src: images.hobbyWhale },
   { src: images.hobbyMatcha },
   { src: images.hobbyPlate },
-  { src: '/images/IMG_0588.jpeg' },
-  { src: '/images/IMG_6734.JPG' }, // hikes
-  { src: '/images/IMG_6950.JPG' }, // hikes
+  { src: '/images/IMG_0588.webp' },
+  { src: '/images/IMG_6734.webp' }, // hikes
+  { src: '/images/IMG_6950.webp' }, // hikes
 ]
 
 // Titles crossfade as you scroll; each centers on the given image index.

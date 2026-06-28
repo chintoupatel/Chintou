@@ -54,29 +54,14 @@ export function Header() {
       >
         <a
           href="#connect"
+          className="btn"
           style={{
-            border: `1px solid ${DESIGN_TOKENS.colors.text}`,
-            padding: '13px 25px',
-            fontFamily: DESIGN_TOKENS.fonts.body,
-            fontWeight: 600,
-            fontSize: '14px',
-            letterSpacing: '0.7px',
-            textTransform: 'uppercase',
-            color: DESIGN_TOKENS.colors.text,
             textDecoration: 'none',
             whiteSpace: 'nowrap',
             flexShrink: 0,
-            transition: `background ${DESIGN_TOKENS.motion.fast} ${DESIGN_TOKENS.motion.easeStandard}, color ${DESIGN_TOKENS.motion.fast} ${DESIGN_TOKENS.motion.easeStandard}`,
-            cursor: 'pointer',
-            backgroundColor: 'transparent',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = DESIGN_TOKENS.colors.text
-            e.currentTarget.style.color = DESIGN_TOKENS.colors.background
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'transparent'
-            e.currentTarget.style.color = DESIGN_TOKENS.colors.text
+            display: 'inline-flex',
+            alignItems: 'center',
+            minHeight: '44px',
           }}
         >
           Connect
@@ -85,29 +70,14 @@ export function Header() {
           href="/resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
+          className="btn"
           style={{
-            border: `1px solid ${DESIGN_TOKENS.colors.text}`,
-            padding: '13px 25px',
-            fontFamily: DESIGN_TOKENS.fonts.body,
-            fontWeight: 600,
-            fontSize: '14px',
-            letterSpacing: '0.7px',
-            textTransform: 'uppercase',
-            color: DESIGN_TOKENS.colors.text,
             textDecoration: 'none',
             whiteSpace: 'nowrap',
             flexShrink: 0,
-            transition: `background ${DESIGN_TOKENS.motion.fast} ${DESIGN_TOKENS.motion.easeStandard}, color ${DESIGN_TOKENS.motion.fast} ${DESIGN_TOKENS.motion.easeStandard}`,
-            cursor: 'pointer',
-            backgroundColor: 'transparent',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = DESIGN_TOKENS.colors.text
-            e.currentTarget.style.color = DESIGN_TOKENS.colors.background
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'transparent'
-            e.currentTarget.style.color = DESIGN_TOKENS.colors.text
+            display: 'inline-flex',
+            alignItems: 'center',
+            minHeight: '44px',
           }}
         >
           Resume
