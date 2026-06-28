@@ -14,6 +14,11 @@ export function Header() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
+        // Stack above Hero's decorative backdrop (zIndex 1) so the nav
+        // buttons stay hoverable/clickable — the 660px backdrop box was
+        // overlapping the header's right side and stealing pointer events.
+        position: 'relative',
+        zIndex: 10,
       }}
     >
       <a

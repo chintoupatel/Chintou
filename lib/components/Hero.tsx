@@ -88,6 +88,9 @@ export function Hero() {
               background: colors.surfaceContainer,
               borderRadius: dimensions.heroBackdropRadius,
               zIndex: 1,
+              // Decorative only — never intercept clicks/hover (it overlaps
+              // the header's right side where the nav buttons sit).
+              pointerEvents: 'none',
             }}
           />
         </div>
