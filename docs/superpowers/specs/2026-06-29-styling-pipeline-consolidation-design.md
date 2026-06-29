@@ -69,10 +69,13 @@ One primitive per step, each its own commit + diff gate:
 - **The one intentional inconsistency:** "after-green" is `#5FC08D` in notion-repair-hub but `#7BC99B` in shree-hanuman-power-tools. True zero-change is impossible here — the design is *already* inconsistent. Resolution: keep BOTH as `positiveNotion` / `positiveShree` to preserve exact pixels (zero-change), OR unify to one (1px change, requires explicit sign-off). **Default: preserve both (zero-change).**
 - Gate: `diff == 0`.
 
-### Phase 4 — Remove dead Tailwind
-- Tailwind is dead weight (7 `className` uses). Replace those 7 with primitives/inline equivalents, then remove Tailwind config + dependency.
-- Removing an entire unused pipeline IS part of the root-cause fix.
-- Gate: `diff == 0`.
+### Phase 4 — Tailwind: keep as base-reset layer (CORRECTED)
+**Plan-writing correction (2026-06-29):** the audit's "Tailwind is dead, just delete it" was **wrong**. Investigation found:
+- `@tailwind base` is active → Tailwind **preflight (global CSS reset)** is live. It resets more than `globals.css` does (h1–h6 margins, button font inheritance, `img` display:block, etc.). Removing it WOULD shift pixels → breaks zero-visual-change.
+- `app/page.tsx` consumes Tailwind **color classes** (`bg-bg-primary text-text-primary`) mapped in `tailwind.config.js` — not just the 7 component `className`s.
+
+**Decision (user-approved):** do NOT remove Tailwind. Keep it as the **base-reset layer only**. The root cause still dies: a single token source (`DESIGN_TOKENS`) + `lib/ui/` primitives collapse the 4 *consumption* pipelines into one. Tailwind stops being a competing styling channel and becomes only the preflight base. No preflight-removal risk. Phase 4 removal is **dropped**.
+- No gate (no change made). The Success Criteria line about removing `tailwindcss` is struck.
 
 ### Phase 5 — Final verification pass (the "no mistakes" gate)
 After all phases, a full correctness sweep before declaring done:
@@ -114,7 +117,7 @@ Both are higher-altitude and non-compounding. Acceptable trade.
 - [ ] One token source; `globals.css :root` guarded by `tokens.test.ts`.
 - [ ] `lib/ui/` primitives consumed at every former duplication site (button ×4 → 1, pill ×2 → 1, section shell, case-study helpers).
 - [ ] Zero raw hex in component/page files — all via `semantic.*`.
-- [ ] `tailwindcss` removed from deps; 0 `className` orphans.
+- [ ] Tailwind kept as base-reset layer only (NOT removed); no new Tailwind utility classes added beyond existing.
 - [ ] All 12 screenshots `diff == 0` vs baseline (or 1 flagged+approved node).
 - [ ] type-check, lint, build all green.
 - [ ] Final self-review confirms every changed line is extract-without-modify.
