@@ -1,3 +1,6 @@
+// CANONICAL token source. globals.css :root mirrors the 7 base values below
+// (colors + motion) for the CSS-class layer (.btn/.label/keyframes); that
+// mirror is guarded by tests/unit/tokens.test.ts. Change values HERE first.
 export const DESIGN_TOKENS = {
   fonts: {
     body: "var(--font-spline-mono), ui-monospace, monospace",
@@ -150,6 +153,31 @@ export const DESIGN_TOKENS = {
     darkBg: '#000000',
     darkText: '#FFFFFF',
     darkQuoteText: '#606060',
+  },
+  // Semantic styling colors used by the case-study pages + gallery. Values are
+  // the exact hex they replaced (zero visual change). positiveNotion/Shree are
+  // intentionally distinct — the two pages' "after" greens already differed.
+  semantic: {
+    negative: '#CC4444',
+    negativeSoft: '#E07B7B',
+    positiveNotion: '#5FC08D',
+    positiveShree: '#7BC99B',
+    divider: '#2A2A2A',
+    surfaceTint: '#F9F9F9',
+    surfaceRaised: '#F5F5F5',
+    narrativeMuted: '#B4B4B4',
+    narrativeText: '#DDDDDD',
+    narrativeSubtle: '#AAAAAA',
+    bodyOnDark: '#DADADA',
+    quoteOnDark: '#CCCCCC',
+    tagBorder: '#E5C5C5',
+    galleryWhite: '#FFFFFF',
+    headingLight: '#666',
+    captionMuted: '#777',
+    labelMuted: '#888',
+    metaStrong: '#999',
+    quoteBorder: '#444',
+    footerBorder: '#222',
   },
   motion: {
     fast: '120ms',

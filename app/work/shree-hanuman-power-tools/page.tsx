@@ -1,90 +1,23 @@
 'use client'
 
-import { useRef, useEffect, ReactNode } from 'react'
+import { useRef, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { DESIGN_TOKENS } from '@/lib/config/designTokens'
 import { useMediaQuery } from '@/lib/hooks'
+import { B, D, LABEL } from '@/lib/case-study/styles'
+import { Hi, Reveal, useReveal } from '@/lib/case-study/components'
 
-gsap.registerPlugin(ScrollTrigger)
-
-const { colors, fonts } = DESIGN_TOKENS
+const { colors, fonts, semantic } = DESIGN_TOKENS
 
 // Project-specific accent — the industrial crimson from the build itself
 const CRIMSON = '#7a0009'
 
-// ─── base styles ─────────────────────────────────────────────────────────
-const D = (size: string, weight = 700, color: string = colors.text) => ({
-  fontFamily: fonts.display,
-  fontSize: size,
-  fontWeight: weight,
-  lineHeight: 1.12,
-  color,
-  margin: 0,
-})
-
-const B = (size = '18px', color: string = colors.textSecondary) => ({
-  fontFamily: fonts.body,
-  fontSize: size,
-  fontWeight: 400,
-  lineHeight: 1.8,
-  color,
-  margin: 0,
-})
-
-const LABEL = {
-  fontFamily: fonts.label,
-  fontSize: '11px',
-  fontWeight: 600,
-  letterSpacing: '2px',
-  textTransform: 'uppercase' as const,
-  color: colors.textMuted,
-}
-
-// ─── highlight ────────────────────────────────────────────────────────────
-function Hi({ children, dark = false }: { children: ReactNode; dark?: boolean }) {
-  return (
-    <strong style={{
-      fontWeight: 600,
-      color: dark ? colors.darkText : colors.text,
-      background: dark ? 'rgba(255,255,255,0.08)' : 'rgba(16,16,16,0.05)',
-      padding: '1px 5px',
-      borderRadius: '3px',
-      boxDecorationBreak: 'clone',
-      WebkitBoxDecorationBreak: 'clone',
-    }}>
-      {children}
-    </strong>
-  )
-}
-
-// ─── scroll reveal ────────────────────────────────────────────────────────
-function useReveal(
-  ref: React.RefObject<HTMLElement | null>,
-  { x = 0, y = 40, delay = 0 }: { x?: number; y?: number; delay?: number } = {}
-) {
-  useEffect(() => {
-    const el = ref.current
-    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const ctx = gsap.context(() => {
-      gsap.from(el, {
-        opacity: 0, x, y, delay, duration: 1, ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' },
-      })
-    }, el)
-    return () => ctx.revert()
-  }, [ref, x, y, delay])
-}
-
-function Reveal({ children, x = 0, y = 40 }: { children: ReactNode; x?: number; y?: number }) {
-  const ref = useRef<HTMLDivElement>(null)
-  useReveal(ref as React.RefObject<HTMLElement | null>, { x, y })
-  return <div ref={ref}>{children}</div>
-}
-
 // ─── pull-quote ───────────────────────────────────────────────────────────
+// NOTE: PullQuote is kept local — it differs from notion's version.
+// notion: border `dark ? '#444' : colors.text`, font-size 38px
+// shree:  border CRIMSON, font-size 36px
 function PullQuote({ quote, dark = false }: { quote: string; dark?: boolean }) {
   const ref = useRef<HTMLQuoteElement>(null)
   useReveal(ref as React.RefObject<HTMLElement | null>, { y: 30 })
@@ -166,7 +99,7 @@ export default function ShreeHanumanPowerTools() {
           <h1 style={{ ...D('clamp(54px, 8vw, 108px)', 700, colors.darkText), marginBottom: '40px', letterSpacing: '-3px' }}>
             Trade First
           </h1>
-          <p style={{ ...B('24px', '#B4B4B4'), maxWidth: '640px', marginBottom: '56px', lineHeight: 1.5 }}>
+          <p style={{ ...B('24px', semantic.narrativeMuted), maxWidth: '640px', marginBottom: '56px', lineHeight: 1.5 }}>
             A local power tools dealer had no digital presence. I researched how tradespeople actually buy, then designed around that, not around how e-commerce templates assume they do.
           </p>
           <div style={{ display: 'flex', gap: '56px', flexWrap: 'wrap' }}>
@@ -177,7 +110,7 @@ export default function ShreeHanumanPowerTools() {
             ].map(({ label: lbl, value }) => (
               <div key={lbl}>
                 <p style={{ ...LABEL, marginBottom: '8px' }}>{lbl}</p>
-                <p style={{ ...B('16px', '#DDDDDD') }}>{value}</p>
+                <p style={{ ...B('16px', semantic.narrativeText) }}>{value}</p>
               </div>
             ))}
           </div>
@@ -191,8 +124,8 @@ export default function ShreeHanumanPowerTools() {
           display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 3fr', gap: isMobile ? '32px' : '64px', alignItems: 'start',
         }}>
           <div>
-            <p style={{ ...LABEL, color: '#888', marginBottom: '12px' }}>At a Glance</p>
-            <p style={{ fontFamily: fonts.body, fontSize: '13px', color: '#888', lineHeight: 1.7 }}>
+            <p style={{ ...LABEL, color: semantic.labelMuted, marginBottom: '12px' }}>At a Glance</p>
+            <p style={{ fontFamily: fonts.body, fontSize: '13px', color: semantic.labelMuted, lineHeight: 1.7 }}>
               Three outcomes of the research and design.
             </p>
           </div>
@@ -204,8 +137,8 @@ export default function ShreeHanumanPowerTools() {
             ].map(({ n, t, d }) => (
               <div key={t}>
                 <p style={{ fontFamily: fonts.display, fontSize: '52px', fontWeight: 700, lineHeight: 1, color: colors.background, margin: '0 0 10px' }}>{n}</p>
-                <p style={{ fontFamily: fonts.body, fontSize: '13px', fontWeight: 600, color: '#999', textTransform: 'uppercase', letterSpacing: '1px', margin: '0 0 8px' }}>{t}</p>
-                <p style={{ fontFamily: fonts.body, fontSize: '14px', color: '#777', lineHeight: 1.65, margin: 0 }}>{d}</p>
+                <p style={{ fontFamily: fonts.body, fontSize: '13px', fontWeight: 600, color: semantic.metaStrong, textTransform: 'uppercase', letterSpacing: '1px', margin: '0 0 8px' }}>{t}</p>
+                <p style={{ fontFamily: fonts.body, fontSize: '14px', color: semantic.captionMuted, lineHeight: 1.65, margin: 0 }}>{d}</p>
               </div>
             ))}
           </div>
@@ -254,17 +187,17 @@ export default function ShreeHanumanPowerTools() {
             <h2 style={{ ...D('52px', 700, colors.darkText), marginBottom: '36px', maxWidth: '760px', lineHeight: 1.12 }}>
               I did not start in Figma. I started by watching the shop run.
             </h2>
-            <p style={{ ...B('20px', '#AAAAAA'), maxWidth: '720px' }}>
+            <p style={{ ...B('20px', semantic.narrativeSubtle), maxWidth: '720px' }}>
               The question shifted fast: <Hi dark>from &quot;build an online store&quot; to &quot;reduce friction between intent and inquiry.&quot;</Hi>
             </p>
-            <p style={{ ...LABEL, color: '#777', marginTop: '24px' }}>
+            <p style={{ ...LABEL, color: semantic.captionMuted, marginTop: '24px' }}>
               Contextual Inquiry · Stakeholder & User Interviews · Competitive Analysis · Brand Exploration
             </p>
           </Reveal>
 
           {/* assumption map */}
           <div style={{ marginTop: '72px' }}>
-            <p style={{ ...LABEL, color: '#777', marginBottom: '24px' }}>Assumptions, tested against reality</p>
+            <p style={{ ...LABEL, color: semantic.captionMuted, marginBottom: '24px' }}>Assumptions, tested against reality</p>
             {[
               { a: 'Customers want to complete purchase online', s: 'Invalidated. Inquiry preferred.', bad: true },
               { a: 'WhatsApp is a secondary channel', s: 'Invalidated. It is the primary channel.', bad: true },
@@ -272,9 +205,9 @@ export default function ShreeHanumanPowerTools() {
               { a: 'Authorized dealer status is assumed', s: 'Invalidated. Customers ask directly, repeatedly.', bad: true },
               { a: 'Mobile is the primary browsing device', s: 'Validated. All participants browsed on phone.', bad: false },
             ].map(({ a, s, bad }) => (
-              <div key={a} style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '8px' : '32px', padding: '20px 0', borderTop: `1px solid #2A2A2A` }}>
-                <p style={{ ...B('16px', '#DDDDDD') }}>{a}</p>
-                <p style={{ ...B('16px', bad ? '#E07B7B' : '#7BC99B') }}>{s}</p>
+              <div key={a} style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '8px' : '32px', padding: '20px 0', borderTop: `1px solid ${semantic.divider}` }}>
+                <p style={{ ...B('16px', semantic.narrativeText) }}>{a}</p>
+                <p style={{ ...B('16px', bad ? semantic.negativeSoft : semantic.positiveShree) }}>{s}</p>
               </div>
             ))}
           </div>
@@ -355,7 +288,7 @@ export default function ShreeHanumanPowerTools() {
       </section>
 
       {/* ── BRAND EXPLORATION ────────────────────────────────────────── */}
-      <section style={{ padding: isMobile ? '64px 24px' : '100px 64px', background: '#F9F9F9' }}>
+      <section style={{ padding: isMobile ? '64px 24px' : '100px 64px', background: semantic.surfaceTint }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <SectionTag n="05" title="Brand & Visual Exploration" />
           <Reveal y={40}>
@@ -434,8 +367,8 @@ export default function ShreeHanumanPowerTools() {
 
       {/* ── BEFORE / AFTER ───────────────────────────────────────────── */}
       <section style={{ margin: isMobile ? '0 0 80px' : '0 64px 80px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '2px', background: colors.border }}>
-        <div style={{ background: '#F5F5F5', padding: '56px 48px' }}>
-          <p style={{ ...LABEL, marginBottom: '36px', color: '#CC4444' }}>Before</p>
+        <div style={{ background: semantic.surfaceRaised, padding: '56px 48px' }}>
+          <p style={{ ...LABEL, marginBottom: '36px', color: semantic.negative }}>Before</p>
           {[
             'Customers called during business hours to ask about stock',
             'Owner described products verbally with no reference point',
@@ -444,13 +377,13 @@ export default function ShreeHanumanPowerTools() {
             'No digital record of stock or authorized brands',
           ].map(t => (
             <div key={t} style={{ display: 'flex', gap: '14px', marginBottom: '18px', alignItems: 'flex-start' }}>
-              <span style={{ color: '#CC4444', marginTop: '2px', flexShrink: 0, fontWeight: 600 }}>✕</span>
+              <span style={{ color: semantic.negative, marginTop: '2px', flexShrink: 0, fontWeight: 600 }}>✕</span>
               <p style={B('16px', colors.text)}>{t}</p>
             </div>
           ))}
         </div>
         <div style={{ background: colors.darkBg, padding: '56px 48px' }}>
-          <p style={{ ...LABEL, marginBottom: '36px', color: '#7BC99B' }}>After</p>
+          <p style={{ ...LABEL, marginBottom: '36px', color: semantic.positiveShree }}>After</p>
           {[
             'Customers browse the full catalog at any hour, filtered by brand or trade',
             'Each product page shows specs, brand, and category before contact',
@@ -459,8 +392,8 @@ export default function ShreeHanumanPowerTools() {
             'Authorized dealer status is visible on landing, footer, and service page',
           ].map(t => (
             <div key={t} style={{ display: 'flex', gap: '14px', marginBottom: '18px', alignItems: 'flex-start' }}>
-              <span style={{ color: '#7BC99B', marginTop: '2px', flexShrink: 0, fontWeight: 600 }}>✓</span>
-              <p style={{ ...B('16px', '#DADADA') }}>{t}</p>
+              <span style={{ color: semantic.positiveShree, marginTop: '2px', flexShrink: 0, fontWeight: 600 }}>✓</span>
+              <p style={{ ...B('16px', semantic.bodyOnDark) }}>{t}</p>
             </div>
           ))}
         </div>
@@ -510,21 +443,21 @@ export default function ShreeHanumanPowerTools() {
               <h2 style={{ ...D('52px', 700, colors.darkText), marginBottom: '36px', lineHeight: 1.12 }}>
                 The research answered the big question. It raised sharper ones.
               </h2>
-              <p style={{ ...B('20px', '#AAAAAA') }}>
+              <p style={{ ...B('20px', semantic.narrativeSubtle) }}>
                 <Hi dark>The questions I would test next</Hi> with real users.
               </p>
             </Reveal>
             <div>
-              <p style={{ ...LABEL, color: '#777', marginBottom: '24px' }}>Questions worth testing</p>
+              <p style={{ ...LABEL, color: semantic.captionMuted, marginBottom: '24px' }}>Questions worth testing</p>
               {[
                 'Do customers send the pre-filled message as-is, or edit it first?',
                 'Does the visual system signal "authorized dealer" on its own?',
                 'Is there a path from a warranty question back to browsing?',
                 'Does an empty filter result create distrust about stock?',
               ].map((q, i) => (
-                <div key={q} style={{ display: 'flex', gap: '20px', padding: '20px 0', borderTop: `1px solid #2A2A2A` }}>
+                <div key={q} style={{ display: 'flex', gap: '20px', padding: '20px 0', borderTop: `1px solid ${semantic.divider}` }}>
                   <span style={{ ...LABEL, color: CRIMSON, flexShrink: 0, paddingTop: '2px' }}>{String(i + 1).padStart(2, '0')}</span>
-                  <p style={{ ...B('15px', '#CCCCCC') }}>{q}</p>
+                  <p style={{ ...B('15px', semantic.quoteOnDark) }}>{q}</p>
                 </div>
               ))}
             </div>
@@ -565,8 +498,8 @@ export default function ShreeHanumanPowerTools() {
       </section>
 
       {/* ── FOOTER ───────────────────────────────────────────────────── */}
-      <footer style={{ padding: isMobile ? '48px 24px' : '80px 64px', background: colors.darkBg, display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'center', gap: isMobile ? '24px' : undefined, borderTop: `1px solid #222` }}>
-        <Link href="/" style={{ ...LABEL, color: '#666', textDecoration: 'none' }}>← All Projects</Link>
+      <footer style={{ padding: isMobile ? '48px 24px' : '80px 64px', background: colors.darkBg, display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'center', gap: isMobile ? '24px' : undefined, borderTop: `1px solid ${semantic.footerBorder}` }}>
+        <Link href="/" style={{ ...LABEL, color: semantic.headingLight, textDecoration: 'none' }}>← All Projects</Link>
         <div style={{ textAlign: 'right' }}>
           <p style={{ ...LABEL, marginBottom: '10px' }}>Previous Case Study</p>
           <Link href="/work/notion-repair-hub" style={{ ...D('24px', 400, colors.darkText), textDecoration: 'none' }}>Notion Repair Hub →</Link>

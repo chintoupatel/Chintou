@@ -7,6 +7,7 @@ import { useRef, useEffect, useState, Suspense } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { useTexture } from '@react-three/drei'
 import type { Mesh, MeshBasicMaterial } from 'three'
+import { DESIGN_TOKENS } from '@/lib/config/designTokens'
 
 export type GalleryImage = { src: string; alt?: string }
 
@@ -250,7 +251,7 @@ export function InfiniteGallery({
                 fontSize: 'clamp(48px, 12vw, 96px)',
                 lineHeight: 1,
                 margin: 0,
-                color: '#FFFFFF',
+                color: DESIGN_TOKENS.semantic.galleryWhite,
                 textAlign: 'center',
                 padding: '0 24px',
                 opacity: 0,

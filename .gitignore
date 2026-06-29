@@ -55,3 +55,7 @@ AGENTS.md
 # Local image backups (originals before WebP conversion)
 _image-originals/
 _opt.mjs
+
+# Playwright artifacts (but NOT -snapshots/ dirs — baselines are committed)
+/test-results/
+/playwright-report/

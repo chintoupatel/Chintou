@@ -2,6 +2,7 @@
 
 import { DESIGN_TOKENS } from '@/lib/config/designTokens'
 import { useMediaQuery } from '@/lib/hooks'
+import { Button } from '@/lib/ui/Button'
 
 export function Header() {
   const isMobile = useMediaQuery('(max-width: 1024px)')
@@ -57,36 +58,12 @@ export function Header() {
           justifyContent: 'flex-end',
         }}
       >
-        <a
-          href="#connect"
-          className="btn"
-          style={{
-            textDecoration: 'none',
-            whiteSpace: 'nowrap',
-            flexShrink: 0,
-            display: 'inline-flex',
-            alignItems: 'center',
-            minHeight: '44px',
-          }}
-        >
+        <Button as="a" variant="bordered" href="#connect">
           Connect
-        </a>
-        <a
-          href="/resume.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn"
-          style={{
-            textDecoration: 'none',
-            whiteSpace: 'nowrap',
-            flexShrink: 0,
-            display: 'inline-flex',
-            alignItems: 'center',
-            minHeight: '44px',
-          }}
-        >
+        </Button>
+        <Button as="a" variant="bordered" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
           Resume
-        </a>
+        </Button>
       </nav>
     </header>
   )

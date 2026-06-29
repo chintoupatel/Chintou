@@ -5,10 +5,12 @@ import { useMediaQuery } from '@/lib/hooks'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { DESIGN_TOKENS } from '@/lib/config/designTokens'
+import { Pill } from '@/lib/ui/Pill'
+import { SectionShell } from '@/lib/ui/SectionShell'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const { typography, colors, fonts, spacing, dimensions, motion } = DESIGN_TOKENS
+const { typography, colors, fonts, spacing, motion } = DESIGN_TOKENS
 
 const navLinks = [
   { label: 'HOME', href: '#top' },
@@ -145,15 +147,7 @@ export function Connect() {
 
   return (
     <>
-      <footer
-        id="connect"
-        style={{
-          maxWidth: dimensions.container,
-          margin: '0 auto',
-          padding: isMobile ? '64px 24px' : `${spacing.sectionPadding} ${spacing.containerPadding}`,
-          background: colors.background,
-        }}
-      >
+      <SectionShell as="footer" id="connect" isMobile={isMobile} background={colors.background}>
         <div
           style={{
             display: 'flex',
@@ -165,25 +159,9 @@ export function Connect() {
         >
           {/* Left — heading + nav */}
           <div ref={leftRef} style={{ flex: 1 }}>
-            <span
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: spacing.smallGap,
-                ...labelStyle,
-                color: colors.text,
-                border: `1.5px solid ${colors.borderAlt}`,
-                borderRadius: '999px',
-                padding: '6px 14px',
-                marginBottom: spacing.mediumGap,
-              }}
-            >
-              <span
-                className="pill-dot"
-                style={{ width: '8px', height: '8px', borderRadius: '50%', background: colors.text, display: 'inline-block' }}
-              />
-              Available for work
-            </span>
+            <div style={{ marginBottom: spacing.mediumGap }}>
+              <Pill>Available for work</Pill>
+            </div>
             <h2
               style={{
                 fontFamily: fonts.display,
@@ -298,7 +276,7 @@ export function Connect() {
             Back to top ↑
           </a>
         </div>
-      </footer>
+      </SectionShell>
 
       {/* Giant footer wordmark — playfair, matches hero CHINTAN.
           Per-letter wave + fadeInDown on scroll, same as "About Me". */}
