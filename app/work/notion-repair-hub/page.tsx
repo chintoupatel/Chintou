@@ -20,7 +20,7 @@ function PullQuote({ quote, dark = false }: { quote: string; dark?: boolean }) {
   useReveal(ref as React.RefObject<HTMLElement | null>, { y: 30 })
   return (
     <blockquote ref={ref} style={{
-      borderLeft: `4px solid ${dark ? '#444' : colors.text}`,
+      borderLeft: `4px solid ${dark ? semantic.quoteBorder : colors.text}`,
       paddingLeft: '40px',
       margin: '72px 0',
     }}>
@@ -118,7 +118,7 @@ export default function NotionRepairHub() {
           <h1 style={{ ...D('clamp(48px, 7.5vw, 100px)', 700, colors.darkText), marginBottom: '4px', letterSpacing: '-3px' }}>
             Notion
           </h1>
-          <h1 style={{ ...D('clamp(48px, 7.5vw, 100px)', 300, '#666'), marginBottom: '44px', letterSpacing: '-3px' }}>
+          <h1 style={{ ...D('clamp(48px, 7.5vw, 100px)', 300, semantic.headingLight), marginBottom: '44px', letterSpacing: '-3px' }}>
             Repair Hub
           </h1>
           <p style={{ ...B('24px', semantic.narrativeMuted), maxWidth: '600px', marginBottom: '56px', lineHeight: 1.5 }}>
@@ -145,8 +145,8 @@ export default function NotionRepairHub() {
         display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 3fr', gap: isMobile ? '32px' : '64px', alignItems: 'start',
       }}>
         <div>
-          <p style={{ ...LABEL, color: '#888', marginBottom: '12px' }}>The Short Version</p>
-          <p style={{ fontFamily: fonts.body, fontSize: '13px', color: '#888', lineHeight: 1.7 }}>
+          <p style={{ ...LABEL, color: semantic.labelMuted, marginBottom: '12px' }}>The Short Version</p>
+          <p style={{ fontFamily: fonts.body, fontSize: '13px', color: semantic.labelMuted, lineHeight: 1.7 }}>
             Three numbers if you have ten seconds. The full story sits below.
           </p>
         </div>
@@ -158,8 +158,8 @@ export default function NotionRepairHub() {
           ].map(({ n, t, d }) => (
             <div key={t}>
               <p style={{ fontFamily: fonts.display, fontSize: '52px', fontWeight: 700, lineHeight: 1, color: colors.background, margin: '0 0 10px' }}>{n}</p>
-              <p style={{ fontFamily: fonts.body, fontSize: '13px', fontWeight: 600, color: '#999', textTransform: 'uppercase', letterSpacing: '1px', margin: '0 0 8px' }}>{t}</p>
-              <p style={{ fontFamily: fonts.body, fontSize: '14px', color: '#777', lineHeight: 1.65, margin: 0 }}>{d}</p>
+              <p style={{ fontFamily: fonts.body, fontSize: '13px', fontWeight: 600, color: semantic.metaStrong, textTransform: 'uppercase', letterSpacing: '1px', margin: '0 0 8px' }}>{t}</p>
+              <p style={{ fontFamily: fonts.body, fontSize: '14px', color: semantic.captionMuted, lineHeight: 1.65, margin: 0 }}>{d}</p>
             </div>
           ))}
         </div>
@@ -436,8 +436,8 @@ export default function NotionRepairHub() {
       </section>
 
       {/* ── FOOTER ───────────────────────────────────────────────────── */}
-      <footer style={{ padding: isMobile ? '48px 24px' : '80px 64px', background: colors.darkBg, display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'center', gap: isMobile ? '24px' : undefined, borderTop: `1px solid #222` }}>
-        <Link href="/" style={{ ...LABEL, color: '#666', textDecoration: 'none' }}>← All Projects</Link>
+      <footer style={{ padding: isMobile ? '48px 24px' : '80px 64px', background: colors.darkBg, display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'center', gap: isMobile ? '24px' : undefined, borderTop: `1px solid ${semantic.footerBorder}` }}>
+        <Link href="/" style={{ ...LABEL, color: semantic.headingLight, textDecoration: 'none' }}>← All Projects</Link>
         <div style={{ textAlign: 'right' }}>
           <p style={{ ...LABEL, marginBottom: '10px' }}>Next Case Study</p>
           <Link href="/work/shree-hanuman-power-tools" style={{ ...D('24px', 400, colors.darkText), textDecoration: 'none' }}>Shree Hanuman Power Tools →</Link>

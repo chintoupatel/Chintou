@@ -124,8 +124,8 @@ export default function ShreeHanumanPowerTools() {
           display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 3fr', gap: isMobile ? '32px' : '64px', alignItems: 'start',
         }}>
           <div>
-            <p style={{ ...LABEL, color: '#888', marginBottom: '12px' }}>At a Glance</p>
-            <p style={{ fontFamily: fonts.body, fontSize: '13px', color: '#888', lineHeight: 1.7 }}>
+            <p style={{ ...LABEL, color: semantic.labelMuted, marginBottom: '12px' }}>At a Glance</p>
+            <p style={{ fontFamily: fonts.body, fontSize: '13px', color: semantic.labelMuted, lineHeight: 1.7 }}>
               Three outcomes of the research and design.
             </p>
           </div>
@@ -137,8 +137,8 @@ export default function ShreeHanumanPowerTools() {
             ].map(({ n, t, d }) => (
               <div key={t}>
                 <p style={{ fontFamily: fonts.display, fontSize: '52px', fontWeight: 700, lineHeight: 1, color: colors.background, margin: '0 0 10px' }}>{n}</p>
-                <p style={{ fontFamily: fonts.body, fontSize: '13px', fontWeight: 600, color: '#999', textTransform: 'uppercase', letterSpacing: '1px', margin: '0 0 8px' }}>{t}</p>
-                <p style={{ fontFamily: fonts.body, fontSize: '14px', color: '#777', lineHeight: 1.65, margin: 0 }}>{d}</p>
+                <p style={{ fontFamily: fonts.body, fontSize: '13px', fontWeight: 600, color: semantic.metaStrong, textTransform: 'uppercase', letterSpacing: '1px', margin: '0 0 8px' }}>{t}</p>
+                <p style={{ fontFamily: fonts.body, fontSize: '14px', color: semantic.captionMuted, lineHeight: 1.65, margin: 0 }}>{d}</p>
               </div>
             ))}
           </div>
@@ -190,14 +190,14 @@ export default function ShreeHanumanPowerTools() {
             <p style={{ ...B('20px', semantic.narrativeSubtle), maxWidth: '720px' }}>
               The question shifted fast: <Hi dark>from &quot;build an online store&quot; to &quot;reduce friction between intent and inquiry.&quot;</Hi>
             </p>
-            <p style={{ ...LABEL, color: '#777', marginTop: '24px' }}>
+            <p style={{ ...LABEL, color: semantic.captionMuted, marginTop: '24px' }}>
               Contextual Inquiry · Stakeholder & User Interviews · Competitive Analysis · Brand Exploration
             </p>
           </Reveal>
 
           {/* assumption map */}
           <div style={{ marginTop: '72px' }}>
-            <p style={{ ...LABEL, color: '#777', marginBottom: '24px' }}>Assumptions, tested against reality</p>
+            <p style={{ ...LABEL, color: semantic.captionMuted, marginBottom: '24px' }}>Assumptions, tested against reality</p>
             {[
               { a: 'Customers want to complete purchase online', s: 'Invalidated. Inquiry preferred.', bad: true },
               { a: 'WhatsApp is a secondary channel', s: 'Invalidated. It is the primary channel.', bad: true },
@@ -448,7 +448,7 @@ export default function ShreeHanumanPowerTools() {
               </p>
             </Reveal>
             <div>
-              <p style={{ ...LABEL, color: '#777', marginBottom: '24px' }}>Questions worth testing</p>
+              <p style={{ ...LABEL, color: semantic.captionMuted, marginBottom: '24px' }}>Questions worth testing</p>
               {[
                 'Do customers send the pre-filled message as-is, or edit it first?',
                 'Does the visual system signal "authorized dealer" on its own?',
@@ -498,8 +498,8 @@ export default function ShreeHanumanPowerTools() {
       </section>
 
       {/* ── FOOTER ───────────────────────────────────────────────────── */}
-      <footer style={{ padding: isMobile ? '48px 24px' : '80px 64px', background: colors.darkBg, display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'center', gap: isMobile ? '24px' : undefined, borderTop: `1px solid #222` }}>
-        <Link href="/" style={{ ...LABEL, color: '#666', textDecoration: 'none' }}>← All Projects</Link>
+      <footer style={{ padding: isMobile ? '48px 24px' : '80px 64px', background: colors.darkBg, display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'center', gap: isMobile ? '24px' : undefined, borderTop: `1px solid ${semantic.footerBorder}` }}>
+        <Link href="/" style={{ ...LABEL, color: semantic.headingLight, textDecoration: 'none' }}>← All Projects</Link>
         <div style={{ textAlign: 'right' }}>
           <p style={{ ...LABEL, marginBottom: '10px' }}>Previous Case Study</p>
           <Link href="/work/notion-repair-hub" style={{ ...D('24px', 400, colors.darkText), textDecoration: 'none' }}>Notion Repair Hub →</Link>

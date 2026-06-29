@@ -172,6 +172,12 @@ export const DESIGN_TOKENS = {
     quoteOnDark: '#CCCCCC',
     tagBorder: '#E5C5C5',
     galleryWhite: '#FFFFFF',
+    headingLight: '#666',
+    captionMuted: '#777',
+    labelMuted: '#888',
+    metaStrong: '#999',
+    quoteBorder: '#444',
+    footerBorder: '#222',
   },
   motion: {
     fast: '120ms',
