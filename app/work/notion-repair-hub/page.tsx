@@ -1,81 +1,20 @@
 'use client'
 
-import { useRef, useEffect, ReactNode } from 'react'
+import { useRef, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { DESIGN_TOKENS } from '@/lib/config/designTokens'
 import { useMediaQuery } from '@/lib/hooks'
-
-gsap.registerPlugin(ScrollTrigger)
+import { B, D, LABEL } from '@/lib/case-study/styles'
+import { Hi, useReveal } from '@/lib/case-study/components'
 
 const { colors, fonts } = DESIGN_TOKENS
 
-// ─── base styles ─────────────────────────────────────────────────────────
-const D = (size: string, weight = 700, color: string = colors.text) => ({
-  fontFamily: fonts.display,
-  fontSize: size,
-  fontWeight: weight,
-  lineHeight: 1.12,
-  color,
-  margin: 0,
-})
-
-const B = (size = '18px', color: string = colors.textSecondary) => ({
-  fontFamily: fonts.body,
-  fontSize: size,
-  fontWeight: 400,
-  lineHeight: 1.8,
-  color,
-  margin: 0,
-})
-
-const LABEL = {
-  fontFamily: fonts.label,
-  fontSize: '11px',
-  fontWeight: 600,
-  letterSpacing: '2px',
-  textTransform: 'uppercase' as const,
-  color: colors.textMuted,
-}
-
-// ─── highlight — marks key phrases for fast scanning ───────────────────────
-function Hi({ children, dark = false }: { children: ReactNode; dark?: boolean }) {
-  return (
-    <strong style={{
-      fontWeight: 600,
-      color: dark ? colors.darkText : colors.text,
-      background: dark ? 'rgba(255,255,255,0.08)' : 'rgba(16,16,16,0.05)',
-      padding: '1px 5px',
-      borderRadius: '3px',
-      boxDecorationBreak: 'clone',
-      WebkitBoxDecorationBreak: 'clone',
-    }}>
-      {children}
-    </strong>
-  )
-}
-
-// ─── scroll reveal ────────────────────────────────────────────────────────
-function useReveal(
-  ref: React.RefObject<HTMLElement | null>,
-  { x = 0, y = 40, delay = 0 }: { x?: number; y?: number; delay?: number } = {}
-) {
-  useEffect(() => {
-    const el = ref.current
-    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const ctx = gsap.context(() => {
-      gsap.from(el, {
-        opacity: 0, x, y, delay, duration: 1, ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' },
-      })
-    }, el)
-    return () => ctx.revert()
-  }, [ref, x, y, delay])
-}
-
 // ─── pull-quote ───────────────────────────────────────────────────────────
+// NOTE: PullQuote is kept local — it differs from shree's version.
+// notion: border `dark ? '#444' : colors.text`, font-size 38px
+// shree:  border CRIMSON, font-size 36px
 function PullQuote({ quote, dark = false }: { quote: string; dark?: boolean }) {
   const ref = useRef<HTMLQuoteElement>(null)
   useReveal(ref as React.RefObject<HTMLElement | null>, { y: 30 })
