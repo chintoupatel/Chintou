@@ -9,7 +9,7 @@ import { useMediaQuery } from '@/lib/hooks'
 import { B, D, LABEL } from '@/lib/case-study/styles'
 import { Hi, useReveal } from '@/lib/case-study/components'
 
-const { colors, fonts } = DESIGN_TOKENS
+const { colors, fonts, semantic } = DESIGN_TOKENS
 
 // ─── pull-quote ───────────────────────────────────────────────────────────
 // NOTE: PullQuote is kept local — it differs from shree's version.
@@ -121,7 +121,7 @@ export default function NotionRepairHub() {
           <h1 style={{ ...D('clamp(48px, 7.5vw, 100px)', 300, '#666'), marginBottom: '44px', letterSpacing: '-3px' }}>
             Repair Hub
           </h1>
-          <p style={{ ...B('24px', '#B4B4B4'), maxWidth: '600px', marginBottom: '56px', lineHeight: 1.5 }}>
+          <p style={{ ...B('24px', semantic.narrativeMuted), maxWidth: '600px', marginBottom: '56px', lineHeight: 1.5 }}>
             They hired me to design a brand. I found a quieter problem costing them an hour a day, and I solved that first.
           </p>
           <div style={{ display: 'flex', gap: '56px', flexWrap: 'wrap' }}>
@@ -132,7 +132,7 @@ export default function NotionRepairHub() {
             ].map(({ label: lbl, value }) => (
               <div key={lbl}>
                 <p style={{ ...LABEL, marginBottom: '8px' }}>{lbl}</p>
-                <p style={{ ...B('16px', '#DDDDDD') }}>{value}</p>
+                <p style={{ ...B('16px', semantic.narrativeText) }}>{value}</p>
               </div>
             ))}
           </div>
@@ -199,7 +199,7 @@ export default function NotionRepairHub() {
                 <span style={{ ...LABEL, paddingTop: '3px', flexShrink: 0 }}>{n}</span>
                 <p style={B('15px', i > 2 ? colors.textMuted : colors.text)}>{t}</p>
                 {i > 2 && (
-                  <span style={{ marginLeft: 'auto', flexShrink: 0, fontFamily: fonts.body, fontSize: '10px', color: '#CC4444', letterSpacing: '1.5px', textTransform: 'uppercase', paddingTop: '4px' }}>
+                  <span style={{ marginLeft: 'auto', flexShrink: 0, fontFamily: fonts.body, fontSize: '10px', color: semantic.negative, letterSpacing: '1.5px', textTransform: 'uppercase', paddingTop: '4px' }}>
                     waste
                   </span>
                 )}
@@ -221,7 +221,7 @@ export default function NotionRepairHub() {
       </div>
 
       {/* ── FRICTION ZONES ───────────────────────────────────────────── */}
-      <section style={{ padding: isMobile ? '64px 24px' : '100px 64px', background: '#F9F9F9' }}>
+      <section style={{ padding: isMobile ? '64px 24px' : '100px 64px', background: semantic.surfaceTint }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }} ref={frictionRef}>
           <SectionTag n="02" title="The Three Problems" />
           <h2 style={{ ...D('54px'), marginBottom: '64px', maxWidth: '700px', lineHeight: 1.12 }}>
@@ -251,7 +251,7 @@ export default function NotionRepairHub() {
               <div key={n} style={{ background: colors.background, padding: '48px 40px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
                   <span style={{ ...D('56px', 200, colors.border) }}>{n}</span>
-                  <span style={{ fontFamily: fonts.body, fontSize: '10px', color: '#CC4444', letterSpacing: '1.5px', textTransform: 'uppercase', border: '1px solid #E5C5C5', padding: '4px 8px' }}>{tag}</span>
+                  <span style={{ fontFamily: fonts.body, fontSize: '10px', color: semantic.negative, letterSpacing: '1.5px', textTransform: 'uppercase', border: `1px solid ${semantic.tagBorder}`, padding: '4px 8px' }}>{tag}</span>
                 </div>
                 <h3 style={{ ...D('22px'), marginBottom: '16px' }}>{title}</h3>
                 <p style={B('15px')}>{txt}</p>
@@ -299,21 +299,21 @@ export default function NotionRepairHub() {
 
       {/* ── BEFORE / AFTER ───────────────────────────────────────────── */}
       <section ref={beforeAfterRef} style={{ margin: isMobile ? '0 0 80px' : '0 64px 80px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '2px', background: colors.border }}>
-        <div style={{ background: '#F5F5F5', padding: '56px 48px' }}>
-          <p style={{ ...LABEL, marginBottom: '36px', color: '#CC4444' }}>Before</p>
+        <div style={{ background: semantic.surfaceRaised, padding: '56px 48px' }}>
+          <p style={{ ...LABEL, marginBottom: '36px', color: semantic.negative }}>Before</p>
           {['Six manual steps per repair', 'Constant switching between pages', 'Duplicate profiles piling up', 'Dirty data hiding real history', 'No guide for new staff'].map(t => (
             <div key={t} style={{ display: 'flex', gap: '14px', marginBottom: '18px', alignItems: 'flex-start' }}>
-              <span style={{ color: '#CC4444', marginTop: '2px', flexShrink: 0, fontWeight: 600 }}>✕</span>
+              <span style={{ color: semantic.negative, marginTop: '2px', flexShrink: 0, fontWeight: 600 }}>✕</span>
               <p style={B('16px', colors.text)}>{t}</p>
             </div>
           ))}
         </div>
         <div style={{ background: colors.darkBg, padding: '56px 48px' }}>
-          <p style={{ ...LABEL, marginBottom: '36px', color: '#5FC08D' }}>After</p>
+          <p style={{ ...LABEL, marginBottom: '36px', color: semantic.positiveNotion }}>After</p>
           {['One action, flip the status to done', 'A single hub page, never leave it', 'A live cache that blocks every duplicate', 'Name cleanup on every write', 'A step by step guide built into the page'].map(t => (
             <div key={t} style={{ display: 'flex', gap: '14px', marginBottom: '18px', alignItems: 'flex-start' }}>
-              <span style={{ color: '#5FC08D', marginTop: '2px', flexShrink: 0, fontWeight: 600 }}>✓</span>
-              <p style={{ ...B('16px', '#DADADA') }}>{t}</p>
+              <span style={{ color: semantic.positiveNotion, marginTop: '2px', flexShrink: 0, fontWeight: 600 }}>✓</span>
+              <p style={{ ...B('16px', semantic.bodyOnDark) }}>{t}</p>
             </div>
           ))}
         </div>
@@ -332,7 +332,7 @@ export default function NotionRepairHub() {
       </div>
 
       {/* ── ROLE CLARITY ─────────────────────────────────────────────── */}
-      <section ref={rolesRef} style={{ padding: isMobile ? '64px 24px' : '100px 64px', maxWidth: '1200px', margin: '0 auto', background: '#F9F9F9' }}>
+      <section ref={rolesRef} style={{ padding: isMobile ? '64px 24px' : '100px 64px', maxWidth: '1200px', margin: '0 auto', background: semantic.surfaceTint }}>
         <SectionTag n="04" title="My Contribution" />
         <h2 style={{ ...D('42px'), marginBottom: '40px' }}>What I owned, and what I handed off</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '8px' }}>
@@ -379,7 +379,7 @@ export default function NotionRepairHub() {
               <h2 style={{ ...D('54px', 700, colors.darkText), marginBottom: '36px', lineHeight: 1.12 }}>
                 The team closed their first repair on the new system without asking a single question.
               </h2>
-              <p style={B('20px', '#AAAAAA')}>
+              <p style={B('20px', semantic.narrativeSubtle)}>
                 <Hi dark>Nobody needed training.</Hi> The system was clear enough that they just used it.
               </p>
             </div>
@@ -391,11 +391,11 @@ export default function NotionRepairHub() {
                 { metric: 'Minutes', detail: 'to onboard new staff, down from days' },
               ].map(({ metric, detail }) => (
                 <div key={metric} style={{
-                  padding: '24px 0', borderTop: `1px solid #2A2A2A`,
+                  padding: '24px 0', borderTop: `1px solid ${semantic.divider}`,
                   display: 'flex', gap: '32px', alignItems: 'baseline',
                 }}>
                   <span style={{ ...D('40px', 700, colors.darkText), minWidth: '140px' }}>{metric}</span>
-                  <p style={B('15px', '#AAAAAA')}>{detail}</p>
+                  <p style={B('15px', semantic.narrativeSubtle)}>{detail}</p>
                 </div>
               ))}
             </div>

@@ -9,7 +9,7 @@ import { useMediaQuery } from '@/lib/hooks'
 import { B, D, LABEL } from '@/lib/case-study/styles'
 import { Hi, Reveal, useReveal } from '@/lib/case-study/components'
 
-const { colors, fonts } = DESIGN_TOKENS
+const { colors, fonts, semantic } = DESIGN_TOKENS
 
 // Project-specific accent — the industrial crimson from the build itself
 const CRIMSON = '#7a0009'
@@ -99,7 +99,7 @@ export default function ShreeHanumanPowerTools() {
           <h1 style={{ ...D('clamp(54px, 8vw, 108px)', 700, colors.darkText), marginBottom: '40px', letterSpacing: '-3px' }}>
             Trade First
           </h1>
-          <p style={{ ...B('24px', '#B4B4B4'), maxWidth: '640px', marginBottom: '56px', lineHeight: 1.5 }}>
+          <p style={{ ...B('24px', semantic.narrativeMuted), maxWidth: '640px', marginBottom: '56px', lineHeight: 1.5 }}>
             A local power tools dealer had no digital presence. I researched how tradespeople actually buy, then designed around that, not around how e-commerce templates assume they do.
           </p>
           <div style={{ display: 'flex', gap: '56px', flexWrap: 'wrap' }}>
@@ -110,7 +110,7 @@ export default function ShreeHanumanPowerTools() {
             ].map(({ label: lbl, value }) => (
               <div key={lbl}>
                 <p style={{ ...LABEL, marginBottom: '8px' }}>{lbl}</p>
-                <p style={{ ...B('16px', '#DDDDDD') }}>{value}</p>
+                <p style={{ ...B('16px', semantic.narrativeText) }}>{value}</p>
               </div>
             ))}
           </div>
@@ -187,7 +187,7 @@ export default function ShreeHanumanPowerTools() {
             <h2 style={{ ...D('52px', 700, colors.darkText), marginBottom: '36px', maxWidth: '760px', lineHeight: 1.12 }}>
               I did not start in Figma. I started by watching the shop run.
             </h2>
-            <p style={{ ...B('20px', '#AAAAAA'), maxWidth: '720px' }}>
+            <p style={{ ...B('20px', semantic.narrativeSubtle), maxWidth: '720px' }}>
               The question shifted fast: <Hi dark>from &quot;build an online store&quot; to &quot;reduce friction between intent and inquiry.&quot;</Hi>
             </p>
             <p style={{ ...LABEL, color: '#777', marginTop: '24px' }}>
@@ -205,9 +205,9 @@ export default function ShreeHanumanPowerTools() {
               { a: 'Authorized dealer status is assumed', s: 'Invalidated. Customers ask directly, repeatedly.', bad: true },
               { a: 'Mobile is the primary browsing device', s: 'Validated. All participants browsed on phone.', bad: false },
             ].map(({ a, s, bad }) => (
-              <div key={a} style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '8px' : '32px', padding: '20px 0', borderTop: `1px solid #2A2A2A` }}>
-                <p style={{ ...B('16px', '#DDDDDD') }}>{a}</p>
-                <p style={{ ...B('16px', bad ? '#E07B7B' : '#7BC99B') }}>{s}</p>
+              <div key={a} style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '8px' : '32px', padding: '20px 0', borderTop: `1px solid ${semantic.divider}` }}>
+                <p style={{ ...B('16px', semantic.narrativeText) }}>{a}</p>
+                <p style={{ ...B('16px', bad ? semantic.negativeSoft : semantic.positiveShree) }}>{s}</p>
               </div>
             ))}
           </div>
@@ -288,7 +288,7 @@ export default function ShreeHanumanPowerTools() {
       </section>
 
       {/* ── BRAND EXPLORATION ────────────────────────────────────────── */}
-      <section style={{ padding: isMobile ? '64px 24px' : '100px 64px', background: '#F9F9F9' }}>
+      <section style={{ padding: isMobile ? '64px 24px' : '100px 64px', background: semantic.surfaceTint }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <SectionTag n="05" title="Brand & Visual Exploration" />
           <Reveal y={40}>
@@ -367,8 +367,8 @@ export default function ShreeHanumanPowerTools() {
 
       {/* ── BEFORE / AFTER ───────────────────────────────────────────── */}
       <section style={{ margin: isMobile ? '0 0 80px' : '0 64px 80px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '2px', background: colors.border }}>
-        <div style={{ background: '#F5F5F5', padding: '56px 48px' }}>
-          <p style={{ ...LABEL, marginBottom: '36px', color: '#CC4444' }}>Before</p>
+        <div style={{ background: semantic.surfaceRaised, padding: '56px 48px' }}>
+          <p style={{ ...LABEL, marginBottom: '36px', color: semantic.negative }}>Before</p>
           {[
             'Customers called during business hours to ask about stock',
             'Owner described products verbally with no reference point',
@@ -377,13 +377,13 @@ export default function ShreeHanumanPowerTools() {
             'No digital record of stock or authorized brands',
           ].map(t => (
             <div key={t} style={{ display: 'flex', gap: '14px', marginBottom: '18px', alignItems: 'flex-start' }}>
-              <span style={{ color: '#CC4444', marginTop: '2px', flexShrink: 0, fontWeight: 600 }}>✕</span>
+              <span style={{ color: semantic.negative, marginTop: '2px', flexShrink: 0, fontWeight: 600 }}>✕</span>
               <p style={B('16px', colors.text)}>{t}</p>
             </div>
           ))}
         </div>
         <div style={{ background: colors.darkBg, padding: '56px 48px' }}>
-          <p style={{ ...LABEL, marginBottom: '36px', color: '#7BC99B' }}>After</p>
+          <p style={{ ...LABEL, marginBottom: '36px', color: semantic.positiveShree }}>After</p>
           {[
             'Customers browse the full catalog at any hour, filtered by brand or trade',
             'Each product page shows specs, brand, and category before contact',
@@ -392,8 +392,8 @@ export default function ShreeHanumanPowerTools() {
             'Authorized dealer status is visible on landing, footer, and service page',
           ].map(t => (
             <div key={t} style={{ display: 'flex', gap: '14px', marginBottom: '18px', alignItems: 'flex-start' }}>
-              <span style={{ color: '#7BC99B', marginTop: '2px', flexShrink: 0, fontWeight: 600 }}>✓</span>
-              <p style={{ ...B('16px', '#DADADA') }}>{t}</p>
+              <span style={{ color: semantic.positiveShree, marginTop: '2px', flexShrink: 0, fontWeight: 600 }}>✓</span>
+              <p style={{ ...B('16px', semantic.bodyOnDark) }}>{t}</p>
             </div>
           ))}
         </div>
@@ -443,7 +443,7 @@ export default function ShreeHanumanPowerTools() {
               <h2 style={{ ...D('52px', 700, colors.darkText), marginBottom: '36px', lineHeight: 1.12 }}>
                 The research answered the big question. It raised sharper ones.
               </h2>
-              <p style={{ ...B('20px', '#AAAAAA') }}>
+              <p style={{ ...B('20px', semantic.narrativeSubtle) }}>
                 <Hi dark>The questions I would test next</Hi> with real users.
               </p>
             </Reveal>
@@ -455,9 +455,9 @@ export default function ShreeHanumanPowerTools() {
                 'Is there a path from a warranty question back to browsing?',
                 'Does an empty filter result create distrust about stock?',
               ].map((q, i) => (
-                <div key={q} style={{ display: 'flex', gap: '20px', padding: '20px 0', borderTop: `1px solid #2A2A2A` }}>
+                <div key={q} style={{ display: 'flex', gap: '20px', padding: '20px 0', borderTop: `1px solid ${semantic.divider}` }}>
                   <span style={{ ...LABEL, color: CRIMSON, flexShrink: 0, paddingTop: '2px' }}>{String(i + 1).padStart(2, '0')}</span>
-                  <p style={{ ...B('15px', '#CCCCCC') }}>{q}</p>
+                  <p style={{ ...B('15px', semantic.quoteOnDark) }}>{q}</p>
                 </div>
               ))}
             </div>

@@ -154,6 +154,25 @@ export const DESIGN_TOKENS = {
     darkText: '#FFFFFF',
     darkQuoteText: '#606060',
   },
+  // Semantic styling colors used by the case-study pages + gallery. Values are
+  // the exact hex they replaced (zero visual change). positiveNotion/Shree are
+  // intentionally distinct — the two pages' "after" greens already differed.
+  semantic: {
+    negative: '#CC4444',
+    negativeSoft: '#E07B7B',
+    positiveNotion: '#5FC08D',
+    positiveShree: '#7BC99B',
+    divider: '#2A2A2A',
+    surfaceTint: '#F9F9F9',
+    surfaceRaised: '#F5F5F5',
+    narrativeMuted: '#B4B4B4',
+    narrativeText: '#DDDDDD',
+    narrativeSubtle: '#AAAAAA',
+    bodyOnDark: '#DADADA',
+    quoteOnDark: '#CCCCCC',
+    tagBorder: '#E5C5C5',
+    galleryWhite: '#FFFFFF',
+  },
   motion: {
     fast: '120ms',
     base: '200ms',
