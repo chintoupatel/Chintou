@@ -8,6 +8,7 @@ import { useParallax } from '@/lib/hooks/useParallax'
 import { useMediaQuery } from '@/lib/hooks'
 import { Pill } from '@/lib/ui/Pill'
 import { SectionShell } from '@/lib/ui/SectionShell'
+import { Button } from '@/lib/ui/Button'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -163,42 +164,14 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
             </span>
           ))}
         </div>
-        <a
+        <Button
+          as="a"
+          variant="solid"
           href={index === 0 ? '/work/notion-repair-hub' : '/work/shree-hanuman-power-tools'}
-          style={{
-            alignSelf: 'flex-start',
-            fontFamily: fonts.label,
-            fontSize: typography.label.fontSize,
-            fontWeight: typography.label.fontWeight,
-            letterSpacing: typography.label.letterSpacing,
-            textTransform: 'uppercase',
-            color: colors.darkText,
-            background: colors.text,
-            border: `2px solid ${colors.text}`,
-            padding: '16px 32px',
-            cursor: 'pointer',
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: spacing.smallGap,
-            textDecoration: 'none',
-            transition: `transform ${motion.base} ${motion.easeStandard}, box-shadow ${motion.base} ${motion.easeStandard}, background ${motion.base} ${motion.easeStandard}, color ${motion.base} ${motion.easeStandard}`,
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translate(-3px, -3px)'
-            e.currentTarget.style.boxShadow = `6px 6px 0 ${colors.borderAlt}`
-            e.currentTarget.style.background = colors.background
-            e.currentTarget.style.color = colors.text
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'none'
-            e.currentTarget.style.boxShadow = 'none'
-            e.currentTarget.style.background = colors.text
-            e.currentTarget.style.color = colors.darkText
-          }}
         >
           {index === 0 ? 'Case Study' : 'View Research'}
           <span aria-hidden="true">↗</span>
-        </a>
+        </Button>
       </div>
     </article>
   )
