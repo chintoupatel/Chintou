@@ -12,7 +12,7 @@ import { Button } from '@/lib/ui/Button'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const { typography, dimensions, colors, fonts, spacing, motion } = DESIGN_TOKENS
+const { typography, dimensions, colors, fonts, spacing } = DESIGN_TOKENS
 
 const HARD_SHADOW = `12px 12px 0 ${colors.borderAlt}`
 const INDEX_SIZE = '96px'
