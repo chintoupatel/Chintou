@@ -1,3 +1,6 @@
+// CANONICAL token source. globals.css :root mirrors the 7 base values below
+// (colors + motion) for the CSS-class layer (.btn/.label/keyframes); that
+// mirror is guarded by tests/unit/tokens.test.ts. Change values HERE first.
 export const DESIGN_TOKENS = {
   fonts: {
     body: "var(--font-spline-mono), ui-monospace, monospace",
