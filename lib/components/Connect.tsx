@@ -5,6 +5,7 @@ import { useMediaQuery } from '@/lib/hooks'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { DESIGN_TOKENS } from '@/lib/config/designTokens'
+import { Pill } from '@/lib/ui/Pill'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -165,25 +166,9 @@ export function Connect() {
         >
           {/* Left — heading + nav */}
           <div ref={leftRef} style={{ flex: 1 }}>
-            <span
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: spacing.smallGap,
-                ...labelStyle,
-                color: colors.text,
-                border: `1.5px solid ${colors.borderAlt}`,
-                borderRadius: '999px',
-                padding: '6px 14px',
-                marginBottom: spacing.mediumGap,
-              }}
-            >
-              <span
-                className="pill-dot"
-                style={{ width: '8px', height: '8px', borderRadius: '50%', background: colors.text, display: 'inline-block' }}
-              />
-              Available for work
-            </span>
+            <div style={{ marginBottom: spacing.mediumGap }}>
+              <Pill>Available for work</Pill>
+            </div>
             <h2
               style={{
                 fontFamily: fonts.display,

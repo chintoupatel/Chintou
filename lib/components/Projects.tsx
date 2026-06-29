@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { DESIGN_TOKENS } from '@/lib/config/designTokens'
 import { useParallax } from '@/lib/hooks/useParallax'
 import { useMediaQuery } from '@/lib/hooks'
+import { Pill } from '@/lib/ui/Pill'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -129,36 +130,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           >
             {project.title}
           </h3>
-          {project.inProgress && (
-            <span
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: spacing.smallGap,
-                fontFamily: fonts.label,
-                fontSize: typography.labelSmall.fontSize,
-                fontWeight: typography.labelSmall.fontWeight,
-                letterSpacing: typography.labelSmall.letterSpacing,
-                textTransform: 'uppercase',
-                color: colors.text,
-                border: `1.5px solid ${colors.borderAlt}`,
-                borderRadius: '999px',
-                padding: '6px 14px',
-              }}
-            >
-              <span
-                className="pill-dot"
-                style={{
-                  width: '8px',
-                  height: '8px',
-                  borderRadius: '50%',
-                  background: colors.text,
-                  display: 'inline-block',
-                }}
-              />
-              In Progress
-            </span>
-          )}
+          {project.inProgress && <Pill>In Progress</Pill>}
         </div>
         <p
           style={{
