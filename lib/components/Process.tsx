@@ -6,10 +6,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { DESIGN_TOKENS } from '@/lib/config/designTokens'
 import { useParallax } from '@/lib/hooks/useParallax'
 import { useMediaQuery } from '@/lib/hooks'
+import { SectionShell } from '@/lib/ui/SectionShell'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const { typography, dimensions, colors, fonts, spacing } = DESIGN_TOKENS
+const { typography, colors, fonts, spacing } = DESIGN_TOKENS
 
 // Layout rework: each box steps down to the right for diagonal rhythm,
 // and a hard-offset shadow gives static depth against the thick border.
@@ -66,14 +67,7 @@ export function Process() {
   }, [])
 
   return (
-    <section
-      style={{
-        maxWidth: dimensions.container,
-        margin: '0 auto',
-        padding: isMobile ? '64px 24px' : `${spacing.sectionPadding} ${spacing.containerPadding}`,
-        background: colors.background,
-      }}
-    >
+    <SectionShell isMobile={isMobile} background={colors.background}>
       <h2
         ref={titleRef}
         style={{
@@ -167,6 +161,6 @@ export function Process() {
           </div>
         ))}
       </div>
-    </section>
+    </SectionShell>
   )
 }

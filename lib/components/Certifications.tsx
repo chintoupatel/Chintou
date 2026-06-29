@@ -5,10 +5,11 @@ import { useMediaQuery } from '@/lib/hooks'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { DESIGN_TOKENS } from '@/lib/config/designTokens'
+import { SectionShell } from '@/lib/ui/SectionShell'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const { typography, colors, fonts, spacing, dimensions, motion } = DESIGN_TOKENS
+const { typography, colors, fonts, spacing, motion } = DESIGN_TOKENS
 
 // Floating preview size + follow smoothing. Landscape to suit certificate art.
 const PREVIEW = { width: 440, height: 320 }
@@ -81,15 +82,7 @@ export function Certifications() {
   }
 
   return (
-    <section
-      onMouseMove={onMove}
-      style={{
-        maxWidth: dimensions.container,
-        margin: '0 auto',
-        padding: isMobile ? '64px 24px' : `${spacing.sectionPadding} ${spacing.containerPadding}`,
-        background: colors.background,
-      }}
-    >
+    <SectionShell isMobile={isMobile} background={colors.background} onMouseMove={onMove}>
       <h2
         style={{
           fontFamily: fonts.display,
@@ -178,6 +171,6 @@ export function Certifications() {
           }}
         />
       )}
-    </section>
+    </SectionShell>
   )
 }

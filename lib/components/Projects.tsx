@@ -7,6 +7,7 @@ import { DESIGN_TOKENS } from '@/lib/config/designTokens'
 import { useParallax } from '@/lib/hooks/useParallax'
 import { useMediaQuery } from '@/lib/hooks'
 import { Pill } from '@/lib/ui/Pill'
+import { SectionShell } from '@/lib/ui/SectionShell'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -208,15 +209,7 @@ export function Projects() {
   const isMobile = useMediaQuery('(max-width: 1024px)')
 
   return (
-    <section
-      id="work"
-      style={{
-        maxWidth: dimensions.container,
-        margin: '0 auto',
-        padding: isMobile ? '64px 24px' : `${spacing.sectionPadding} ${spacing.containerPadding}`,
-        background: colors.background,
-      }}
-    >
+    <SectionShell id="work" isMobile={isMobile} background={colors.background}>
       <h2
         ref={titleRef}
         style={{
@@ -237,6 +230,6 @@ export function Projects() {
           <ProjectCard key={project.title} project={project} index={i} />
         ))}
       </div>
-    </section>
+    </SectionShell>
   )
 }
