@@ -68,7 +68,7 @@ export function Hero() {
           lineHeight: 1,
           marginBottom: '4px',
           textAlign: isMobile ? 'center' : 'left',
-          animationDelay: '0.05s',
+          animationDelay: '0.04s',
         }}
       >
         Bonjour, I&apos;m
@@ -110,7 +110,7 @@ export function Hero() {
           margin: isMobile ? '8px 0 0' : '-28px 0 0',
           color: colors.text,
           textAlign: isMobile ? 'center' : 'left',
-          animationDelay: '0.12s',
+          animationDelay: '0.10s',
         }}
       >
         CHINTAN
@@ -135,7 +135,7 @@ export function Hero() {
           margin: 0,
           marginTop: isMobile ? '24px' : 0,
           textAlign: isMobile ? 'center' : 'left',
-          animationDelay: '0.28s',
+          animationDelay: '0.16s',
         }}
       >
         I came from operations now I design for people.
@@ -154,7 +154,7 @@ export function Hero() {
           flexDirection: 'column',
           alignItems: isMobile ? 'center' : 'flex-start',
           gap: spacing.smallGap,
-          animationDelay: '0.36s',
+          animationDelay: '0.22s',
         }}
       >
         <span

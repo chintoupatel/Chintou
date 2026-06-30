@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { DESIGN_TOKENS } from '@/lib/config/designTokens'
 import { useTypewriterScrub } from '../hooks/useTypewriterScrub'
 
@@ -13,15 +13,55 @@ const FADE_MS = 400 // fade-out
 
 const TYPE_TEXT = 'PS: I can make a latte Art.'
 
+// Returning visitors have seen the intro — skip it for a faster re-entry.
+// sessionStorage (not localStorage): the intro replays on a fresh visit but
+// not on in-session navigations/reloads, which is the annoying case.
+const SEEN_KEY = 'intro-seen'
+
+// Read the seen-flag client-side only. Returns false during SSR (no window),
+// so server + first client render agree (loader shown) — hydration-safe. The
+// flag itself is written in an effect after mount.
+function hasSeenIntro(): boolean {
+  if (typeof window === 'undefined') return false
+  try {
+    return sessionStorage.getItem(SEEN_KEY) === '1'
+  } catch {
+    return false // storage blocked (private mode) → show the intro
+  }
+}
+
 export function LoadingScreen() {
+  const skipIntro = useRef(false)
   const [pct, setPct] = useState(0)
   const [counted, setCounted] = useState(false)
   const [fading, setFading] = useState(false)
+  // Starts false so the first client render matches the server (loader shown),
+  // keeping hydration clean. A returning visitor is removed in the effect below.
   const [gone, setGone] = useState(false)
   const typeRef = useTypewriterScrub({ text: TYPE_TEXT, duration: TYPE_MS / 1000 })
 
+  // Returning visitor → bypass the intro. Mark seen, then drop the overlay on
+  // the next frame (rAF defers the state update out of the effect body, so it
+  // doesn't cascade-render, and lets the first paint match the server HTML).
+  useEffect(() => {
+    const seen = hasSeenIntro()
+    try {
+      sessionStorage.setItem(SEEN_KEY, '1')
+    } catch {
+      // storage blocked → intro replays next time, harmless
+    }
+    if (!seen) return
+    skipIntro.current = true
+    const raf = requestAnimationFrame(() => {
+      document.documentElement.classList.add('loaded')
+      setGone(true)
+    })
+    return () => cancelAnimationFrame(raf)
+  }, [])
+
   // Count 0 → 100 linearly. Reduced motion → duration 0, resolves first frame.
   useEffect(() => {
+    if (skipIntro.current) return
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const duration = reduced ? 0 : COUNT_MS
     let raf = 0
