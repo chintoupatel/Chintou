@@ -380,7 +380,7 @@ export default function NotionRepairHub() {
                 The team closed their first repair on the new system without asking a single question.
               </h2>
               <p style={B('20px', semantic.narrativeSubtle)}>
-                <Hi dark>Nobody needed training.</Hi> The system was clear enough that they just used it.
+                <Hi dark>Nobody needed training.</Hi> Three staff, one technician, ten-plus machines a day — they just used it.
               </p>
             </div>
             <div>

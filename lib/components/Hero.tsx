@@ -138,7 +138,7 @@ export function Hero() {
           animationDelay: '0.16s',
         }}
       >
-        I came from operations now I design for people.
+        I came from operations — now I design for people.
       </p>
 
       {/* Disciplines — move with left/top */}
