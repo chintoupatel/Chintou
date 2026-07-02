@@ -49,6 +49,15 @@ const nextConfig: NextConfig = {
     ];
   },
 
+  // Image optimization. AVIF first (~20-30% smaller than WebP at equal quality)
+  // with WebP fallback for older browsers — Next's default is WebP-only, so the
+  // LCP hero was shipping as WebP. minimumCacheTTL keeps optimized variants in
+  // the CDN longer (the /_next/image responses were revalidating at max-age=0).
+  images: {
+    formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 2592000, // 30 days
+  },
+
   // Disable source maps in production (prevent code exposure)
   productionBrowserSourceMaps: false,
 
