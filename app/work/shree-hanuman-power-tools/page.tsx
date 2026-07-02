@@ -465,9 +465,23 @@ export default function ShreeHanumanPowerTools() {
         </div>
       </section>
 
+      {/* ── WHERE IT STANDS ──────────────────────────────────────────── */}
+      <section style={{ padding: isMobile ? '80px 24px' : '120px 64px', maxWidth: '920px', margin: '0 auto' }}>
+        <SectionTag n="08" title="Where It Stands" />
+        <h2 style={{ ...D('42px', 700), marginBottom: '28px', lineHeight: 1.15 }}>
+          Delivered as a research and design-system handoff.
+        </h2>
+        <p style={{ ...B('18px'), maxWidth: '720px' }}>
+          The engagement closed with <Hi>four validated findings, a documented visual system, and the
+          wireframe direction</Hi> in the owner&apos;s hands. The build hasn&apos;t started yet — but the
+          next step no longer needs a discovery phase. When the shop goes digital, the decisions are
+          already made.
+        </p>
+      </section>
+
       {/* ── WHAT I LEARNED ───────────────────────────────────────────── */}
       <section style={{ padding: isMobile ? '80px 24px' : '120px 64px', maxWidth: '920px', margin: '0 auto' }}>
-        <SectionTag n="08" title="What I Learned" />
+        <SectionTag n="09" title="What I Learned" />
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           {[
             {
