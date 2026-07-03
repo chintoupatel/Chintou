@@ -146,7 +146,7 @@ export function LoadingScreen() {
         style={{
           position: 'absolute',
           bottom: '32px',
-          right: '32px',
+          left: '32px',
           background: 'transparent',
           border: `1px solid ${colors.text}`,
           color: colors.text,
