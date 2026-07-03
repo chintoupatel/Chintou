@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { DESIGN_TOKENS } from '@/lib/config/designTokens'
 import { useTypewriterScrub } from '../hooks/useTypewriterScrub'
 
@@ -13,61 +13,15 @@ const FADE_MS = 400 // fade-out
 
 const TYPE_TEXT = 'PS: I can make a latte Art.'
 
-// Returning visitors have seen the intro — skip it for a faster re-entry.
-// sessionStorage (not localStorage): the intro replays on a fresh visit but
-// not on in-session navigations/reloads, which is the annoying case.
-const SEEN_KEY = 'intro-seen'
-
-// Read the seen-flag client-side only. Returns false during SSR (no window),
-// so server + first client render agree (loader shown) — hydration-safe. The
-// flag itself is written in an effect after mount.
-function hasSeenIntro(): boolean {
-  if (typeof window === 'undefined') return false
-  try {
-    return sessionStorage.getItem(SEEN_KEY) === '1'
-  } catch {
-    return false // storage blocked (private mode) → show the intro
-  }
-}
-
-// Called only after the intro has actually played (or been skipped), so the
-// NEXT same-session visit fast-paths. Never called on mount.
-function markIntroSeen(): void {
-  try {
-    sessionStorage.setItem(SEEN_KEY, '1')
-  } catch {
-    // storage blocked → intro replays next time, harmless
-  }
-}
-
 export function LoadingScreen() {
-  // Decide skip ONCE at construction, before any effect runs. Reading here
-  // (not in an effect) means React StrictMode's double-invoke can't self-
-  // poison it, and the seen-flag is written only AFTER the intro completes —
-  // never on mount — so a first visit always runs the full sequence.
-  // SSR reads false (no window) so server + first client render agree.
-  const skipIntro = useRef(hasSeenIntro())
   const [pct, setPct] = useState(0)
   const [counted, setCounted] = useState(false)
   const [fading, setFading] = useState(false)
   const [gone, setGone] = useState(false)
   const typeRef = useTypewriterScrub({ text: TYPE_TEXT, duration: TYPE_MS / 1000 })
 
-  // Returning visitor → drop the overlay on the next frame (rAF defers the
-  // state update so the first paint still matches the server HTML — clean
-  // hydration — then removes it).
-  useEffect(() => {
-    if (!skipIntro.current) return
-    const raf = requestAnimationFrame(() => {
-      document.documentElement.classList.add('loaded')
-      setGone(true)
-    })
-    return () => cancelAnimationFrame(raf)
-  }, [])
-
   // Count 0 → 100 linearly. Reduced motion → duration 0, resolves first frame.
   useEffect(() => {
-    if (skipIntro.current) return
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const duration = reduced ? 0 : COUNT_MS
     let raf = 0
@@ -90,13 +44,10 @@ export function LoadingScreen() {
   }, [counted])
 
   // After the fade completes, unmount + signal the site so above-fold
-  // entrance animations fire exactly when the loader reveals the page. Mark
-  // the intro seen HERE (once it has actually played) so a later same-session
-  // visit skips it — writing on mount would make the very next reload skip.
+  // entrance animations fire exactly when the loader reveals the page.
   useEffect(() => {
     if (!fading) return
     const t = setTimeout(() => {
-      markIntroSeen()
       document.documentElement.classList.add('loaded')
       setGone(true)
     }, FADE_MS)
@@ -126,7 +77,6 @@ export function LoadingScreen() {
 
   // Skip: bypass the intro immediately (reveals the page, fires entrance anims).
   const skip = () => {
-    markIntroSeen()
     document.documentElement.classList.add('loaded')
     setGone(true)
   }
