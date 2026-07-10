@@ -37,7 +37,23 @@ export function ActualStory() {
   useEffect(() => {
     const section = sectionRef.current
     if (!section) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      // JSX ships opacity: 0 (and the line at scaleX: 0) expecting GSAP to
+      // animate them in — without this, reduced-motion users see nothing.
+      gsap.set(
+        [
+          labelRef.current,
+          introRef.current,
+          middleTextRef.current,
+          emphasisRef.current,
+          closingRef1.current,
+          closingRef2.current,
+        ].filter(Boolean),
+        { opacity: 1, x: 0, y: 0 }
+      )
+      if (lineRef.current) gsap.set(lineRef.current, { scaleX: 1 })
+      return
+    }
 
     const ctx = gsap.context(() => {
       // ── Effect 1: Fade-up reveals ──
@@ -254,9 +270,8 @@ export function ActualStory() {
           opacity: 0.15,
         }}
       >
-        I spent years in operations obsessing over friction then discovered UX was the missing tool.
-        Now I design interfaces that feel invisible because they solve real problems before users hit them.
-        Operations taught me to see what&apos;s breaking. Design taught me to fix it beautifully.
+        I spent years in operations obsessing over friction. UX turned out to be the tool I was missing.
+        Operations taught me to see what&apos;s breaking. Design taught me to fix it.
       </p>
       <p
         ref={closingRef2}
@@ -271,8 +286,8 @@ export function ActualStory() {
           opacity: 0.15,
         }}
       >
-        I design for the person using the product, but I also think about the team behind it, the process around it,
-        and the business outcome it needs to support.
+        The screen is the last thing I design. First comes the person using it, the team maintaining it,
+        and the number it has to move.
       </p>
     </div>
   )
