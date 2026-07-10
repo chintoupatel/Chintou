@@ -33,7 +33,11 @@ export function OpeningQuote() {
           opacity: 1,
           ease: 'none',
           stagger: 0.12,
-          scrollTrigger: { trigger: el, start: 'top 85%', end: 'bottom 95%', scrub: true},
+          // End at center — all words fully white by the time the quote
+          // reaches its resting (pinned) position, before ActualStory wipes
+          // over it. The old 'bottom 95%' end left the last words grey when
+          // the pin froze the element mid-scrub.
+          scrollTrigger: { trigger: el, start: 'top 85%', end: 'center 55%', scrub: true },
         }
       )
     }, el)
@@ -46,7 +50,10 @@ export function OpeningQuote() {
       style={{
         fontFamily: fonts.display,
         fontWeight: typography.darkQuote.fontWeight,
-        fontSize: `clamp(24px, 5vw, ${typography.darkQuote.fontSize})`,
+        // Capped at 48px (not the 64px token): the rewritten ~85-word quote
+        // at 64px is ~980px tall — taller than the pinned 100vh slide, so the
+        // first/last lines were clipped. 48px fits with breathing room.
+        fontSize: 'clamp(24px, 3.4vw, 48px)',
         lineHeight: typography.darkQuote.lineHeight,
         textAlign: 'center',
         color: colors.darkQuoteText,

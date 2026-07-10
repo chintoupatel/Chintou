@@ -102,9 +102,12 @@ export function Story() {
       <div
         ref={quoteSectionRef}
         style={{
-          height: isMobile ? 'auto' : '100vh',
-          minHeight: isMobile ? '60vh' : undefined,
-          padding: isMobile ? '80px 0' : undefined,
+          // minHeight (not fixed height): if the quote ever outgrows the
+          // viewport the slide stretches instead of clipping lines top+bottom
+          // (overflow: hidden below is needed for the parallax recede).
+          minHeight: isMobile ? '60vh' : '100vh',
+          height: isMobile ? 'auto' : undefined,
+          padding: isMobile ? '80px 0' : '96px 0',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
