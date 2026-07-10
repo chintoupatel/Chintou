@@ -54,7 +54,10 @@ export function Certifications() {
   }, [])
 
   // rAF loop: ease the floating preview toward the cursor + scale in/out.
+  // Desktop only — the preview doesn't render on mobile, so don't burn a
+  // permanent rAF there competing with scroll animations.
   useEffect(() => {
+    if (isMobile) return
     let raf = 0
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const factor = reduced ? 1 : LERP
@@ -73,7 +76,7 @@ export function Certifications() {
     }
     raf = requestAnimationFrame(loop)
     return () => cancelAnimationFrame(raf)
-  }, [])
+  }, [isMobile])
 
   const onMove = (e: React.MouseEvent) => {
     if (isMobile) return

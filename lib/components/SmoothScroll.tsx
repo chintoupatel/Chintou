@@ -17,21 +17,6 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reduced) return
 
-    // smoothWheel handles desktop. syncTouch is intentionally OFF: on iOS
-    // Safari it fights native momentum scroll and can stall scroll-driven
-    // updates entirely. Touch uses native scroll, and the window 'scroll'
-    // listener below feeds ScrollTrigger so reveals/parallax still fire.
-    const lenis = new Lenis({ duration: 1.2, smoothWheel: true })
-    lenis.on('scroll', ScrollTrigger.update)
-
-    const onTick = (time: number) => lenis.raf(time * 1000)
-    gsap.ticker.add(onTick)
-    gsap.ticker.lagSmoothing(0)
-
-    // Belt-and-suspenders: also update ScrollTrigger on native scroll, so
-    // reveals fire even where Lenis touch sync is unavailable.
-    window.addEventListener('scroll', ScrollTrigger.update, { passive: true })
-
     // Recalculate all trigger start/end positions once layout settles.
     // Without this, ScrollTrigger measures during init — before fonts/images
     // and the mobile stacked reflow land — so triggers point at stale scroll
@@ -41,6 +26,26 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     const refreshTimer = setTimeout(refresh, 400)
     window.addEventListener('load', refresh)
     window.addEventListener('orientationchange', refresh)
+
+    const cleanupBase = () => {
+      clearTimeout(refreshTimer)
+      window.removeEventListener('load', refresh)
+      window.removeEventListener('orientationchange', refresh)
+    }
+
+    // Touch-primary devices (phones/tablets) scroll natively — Lenis only
+    // smooths the wheel, so running it there is pure per-frame overhead
+    // (rAF loop + lagSmoothing(0) disabling GSAP's frame-drop recovery).
+    // ScrollTrigger listens to native scroll by itself; skip Lenis entirely.
+    const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches
+    if (isTouch) return cleanupBase
+
+    const lenis = new Lenis({ duration: 1.2, smoothWheel: true })
+    lenis.on('scroll', ScrollTrigger.update)
+
+    const onTick = (time: number) => lenis.raf(time * 1000)
+    gsap.ticker.add(onTick)
+    gsap.ticker.lagSmoothing(0)
 
     // Lenis hijacks scroll, so native anchor jumps (#top, #connect, #about,
     // #work) don't work — clicking a nav link does nothing. Intercept in-page
@@ -58,11 +63,8 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     document.addEventListener('click', onAnchorClick)
 
     return () => {
-      clearTimeout(refreshTimer)
+      cleanupBase()
       document.removeEventListener('click', onAnchorClick)
-      window.removeEventListener('scroll', ScrollTrigger.update)
-      window.removeEventListener('load', refresh)
-      window.removeEventListener('orientationchange', refresh)
       gsap.ticker.remove(onTick)
       lenis.destroy()
     }

@@ -136,7 +136,9 @@ export function InfiniteGallery({
   // Hero / Story / Process (was 768px here — broke the tablet zone).
   useEffect(() => {
     const handleResize = () => {
-      const mobile = window.innerWidth < MOBILE_BREAKPOINT
+      // <= so width 1024 exactly (iPad landscape) matches the rest of the
+      // site's (max-width: 1024px) media queries.
+      const mobile = window.innerWidth <= MOBILE_BREAKPOINT
       mobileRef.current = mobile
       setIsMobile(mobile)
     }
@@ -158,11 +160,11 @@ export function InfiniteGallery({
     // Scroll progress at which image `idx` is focal (at FADE_PEAK).
     const focalP = (idx: number) =>
       clamp((CAM_START - FADE_PEAK + idx * zSpacing) / (total + TRAVEL_PAD), 0, 1)
-    // Mobile: wider fade window (slower crossfade). Desktop: tighter window.
-    const fadeWindowSize = mobileRef.current ? 1.8 : 1.2
-    // crossfade window
-    const fadeP = (fadeWindowSize * zSpacing) / (total + TRAVEL_PAD)
     const update = () => {
+      // Mobile: wider fade window (slower crossfade). Desktop: tighter.
+      // Read per-update so rotation/resize picks up the new breakpoint.
+      const fadeWindowSize = mobileRef.current ? 1.8 : 1.2
+      const fadeP = (fadeWindowSize * zSpacing) / (total + TRAVEL_PAD)
       raf = 0
       const el = wrapRef.current
       if (!el) return

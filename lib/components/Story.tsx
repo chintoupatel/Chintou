@@ -28,6 +28,9 @@ export function Story() {
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    // Live check (not the isMobile state, which lags one render behind on
+    // first paint) + isMobile in deps so pins are killed/created when the
+    // viewport crosses the breakpoint (tablet rotation, window resize).
     if (window.matchMedia('(max-width: 1024px)').matches) return
 
     const ctx = gsap.context(() => {
@@ -90,7 +93,7 @@ export function Story() {
     }, containerRef)
 
     return () => ctx.revert()
-  }, [])
+  }, [isMobile])
 
   return (
     <section ref={containerRef} style={{ background: colors.darkBg, color: colors.darkText }}>

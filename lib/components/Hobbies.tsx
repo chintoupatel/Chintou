@@ -41,7 +41,7 @@ export function Hobbies() {
   useEffect(() => {
     const handleResize = () => {
       setVhPerImage(
-        window.innerWidth < MOBILE_BREAKPOINT
+        window.innerWidth <= MOBILE_BREAKPOINT
           ? VH_PER_IMAGE_MOBILE
           : VH_PER_IMAGE_DESKTOP
       )
