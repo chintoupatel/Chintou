@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger)
 const { typography, colors, fonts } = DESIGN_TOKENS
 
 const OPENING_QUOTE =
-  "I used to plate food like every dish deserved its own photoshoot. Now I design products with the same obsession. The details most people never notice but always feel, that's where I live. I don't stop at shipping. I watch how people actually use what I build, their hesitation, the moment something finally clicks, and I keep refining until it works. The goal: products people enjoy using, on a team that sweats the details as much as I do."
+  "I spend more time watching people than drawing screens. I study what they do, not what they say, and I build for the truth."
 
 export function OpeningQuote() {
   const quoteRef = useRef<HTMLParagraphElement>(null)
@@ -50,11 +50,12 @@ export function OpeningQuote() {
       style={{
         fontFamily: fonts.display,
         fontWeight: typography.darkQuote.fontWeight,
-        // Capped at 48px (not the 64px token): the rewritten ~85-word quote
-        // at 64px is ~980px tall — taller than the pinned 100vh slide, so the
-        // first/last lines were clipped. 48px fits with breathing room.
-        fontSize: 'clamp(24px, 3.4vw, 48px)',
-        lineHeight: typography.darkQuote.lineHeight,
+        // 24-word quote in a 700px slide: fills the space at the 64px token on
+        // desktop, scales down to 30px on phones via clamp. No media queries —
+        // vw term handles tablet between the two caps.
+        fontSize: 'clamp(30px, 6vw, 64px)',
+        lineHeight: 1.15,
+        letterSpacing: '-0.5px',
         textAlign: 'center',
         color: colors.darkQuoteText,
       }}

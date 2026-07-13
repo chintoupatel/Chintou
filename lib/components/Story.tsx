@@ -76,6 +76,10 @@ export function Story() {
       }
 
       // Parallax ActualStory out as Hobbies scrolls in — same recede treatment.
+      // start delayed to 'top 25%' (was 'top bottom') so the recede/dim only
+      // begins after the reader has the resting CTA fully in view; otherwise
+      // the fade dropped the last cell to near-zero opacity while still on
+      // screen and it couldn't be read.
       if (actualStoryInnerRef.current && hobbiesSectionRef.current) {
         gsap.to(actualStoryInnerRef.current, {
           y: '30vh',
@@ -84,7 +88,7 @@ export function Story() {
           ease: 'none',
           scrollTrigger: {
             trigger: hobbiesSectionRef.current,
-            start: 'top bottom',
+            start: 'top 25%',
             end: 'top top',
             scrub: 1,
           },
@@ -116,12 +120,14 @@ export function Story() {
           overflow: 'hidden',
         }}
       >
-        <div ref={quoteInnerRef} style={{ maxWidth: '1000px', width: '100%', padding: isMobile ? '0 24px' : '0 64px' }}>
+        <div ref={quoteInnerRef} style={{ maxWidth: '700px', width: '100%', padding: isMobile ? '0 24px' : '0 64px' }}>
           <OpeningQuote />
         </div>
       </div>
 
       {/* --- SLIDE 2: Actual Story --- */}
+      {/* Extra bottom padding = scroll runway so the full text passes through
+          view and rests before the pin engages and Hobbies wipes over it. */}
       <div
         ref={actualStorySectionRef}
         style={{
@@ -131,12 +137,12 @@ export function Story() {
           minHeight: '100vh',
         }}
       >
-        <div 
-          ref={actualStoryInnerRef} 
-          style={{ 
+        <div
+          ref={actualStoryInnerRef}
+          style={{
             maxWidth: '1000px',
             margin: '0 auto',
-            padding: isMobile ? '64px 24px' : '120px 64px',
+            padding: isMobile ? '64px 24px 220px' : '120px 64px 480px',
             background: colors.darkBg
           }}
         >

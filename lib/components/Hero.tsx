@@ -138,7 +138,7 @@ export function Hero() {
           animationDelay: '0.16s',
         }}
       >
-        I came from operations — now I design for people.
+        My best design decisions are the steps I delete.
       </p>
 
       {/* Disciplines — move with left/top */}
